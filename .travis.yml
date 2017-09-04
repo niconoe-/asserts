@@ -4,10 +4,7 @@ sudo: false
 
 php:
   - 7.1
-  - 7.1snapshot
   - 7.2
-  - 7.2snapshot
-  - master
 
 cache:
   directories:
