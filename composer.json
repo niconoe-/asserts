@@ -1,0 +1,36 @@
+{
+  "name": "nicodev/asserts",
+  "description": "List of traits that make assertions and throw Exception if assertion fails.",
+  "type": "library",
+  "keywords": ["Assertion", "Library", "Helper"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nicolas Giraud",
+      "email": "nicolas.giraud.dev@gmail.com",
+      "role": "Main Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1.0",
+    "roave/security-advisories": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nicodev\\Asserts\\": "src/Asserts"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nicodev\\Tests\\Asserts\\": "src/Tests/Asserts"
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "archive": {
+    "exclude": ["*", ".*", "!/src/*"]
+  }
+}
