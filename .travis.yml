@@ -10,5 +10,8 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+script:
+  phpunit --bootstrap=vendor/autoload.php --coverage-text --whitelist=src/Asserts src/Tests
+
 notifications:
   email: false
