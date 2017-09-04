@@ -1,0 +1,4 @@
+cmd/ export-ignore
+reports/ export-ignore
+.sensiolabs.yml export-ignore
+README.md export-ignore
