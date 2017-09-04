@@ -29,8 +29,5 @@
     }
   },
   "prefer-stable": true,
-  "minimum-stability": "dev",
-  "archive": {
-    "exclude": ["*", ".*", "!/src/*"]
-  }
+  "minimum-stability": "dev"
 }
