@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Author: Nicolas Giraud <nicolas.giraud@aareon.fr>
+# Author: Nicolas Giraud <nicolas.giraud.dev@gmail.com>
 # Copyright (c) 2017
 # License: MIT
 
@@ -13,8 +13,7 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 # Set the URL registry where the docker image to based on is stored.
-# Temporary use the Aareon image for composer.
-REGISTRY="hub.aareonit.fr:5000/preprod"
+REGISTRY="nicodocker91/phpcs"
 
 # Set dynamic options for the command:
 # - Enable the --tty option if there is a tty.
@@ -31,8 +30,7 @@ mkdir -p ${REPORTS_FOLDER} 2>/dev/null
 docker run --rm ${option_tty} \
     --user $(id -u):$(id -g) \
     --volume ${__root}:/data/www \
-    ${REGISTRY}/qa:phpcs \
-        --standard=Aareon \
+    ${REGISTRY} \
         --extensions=php \
         --encoding=utf-8 \
         --colors \
