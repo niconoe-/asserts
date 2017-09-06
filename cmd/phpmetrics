@@ -33,4 +33,4 @@ docker run --rm ${option_tty} \
     ${REGISTRY} \
         --exclude=Tests,tests,.git,vendor \
         --report-html=${REPORTS_FOLDER} \
-        src,composer.json
+        composer.json,src
