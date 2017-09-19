@@ -12,6 +12,8 @@ set -o nounset  # Exit script when using unset variable.
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ${__dir}/phpunit &
+wait
+
 ${__dir}/pdepend &
 ${__dir}/phpmetrics &
 ${__dir}/phpcs &

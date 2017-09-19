@@ -33,4 +33,7 @@ docker run --rm ${option_tty} \
     ${REGISTRY} \
         --exclude=Tests,tests,.git,vendor \
         --report-html=${REPORTS_FOLDER} \
-        composer.json,src
+        composer.lock,composer.json,src
+
+# Add --junit=${REPORTS_FOLDER}/../phpunit/phpunit-unit.xml \ option when phpmetrics reach v2.3.*
+# Add --git \ option when phpmetrics reach v2.3.*
