@@ -55,4 +55,20 @@ trait TraitAssertObject
         static::makeAssertion(\is_a($object, $type), $exception);
         return $object;
     }
+
+    /**
+     * Asserts that a list of properties exist in cascade from an original object.
+     * @param mixed $object The original object to check properties in cascade.
+     * @param mixed $exception The exception to throw if the assertion fails.
+     * @param string[] ...$propertiesInCascade The list of properties to check in cascade.
+     * @return mixed The value of the last element to check.
+     */
+    public static function assertPropertiesInCascade($object, $exception, string ...$propertiesInCascade)
+    {
+        foreach ($propertiesInCascade as $property) {
+            static::makeAssertion(\property_exists($object, $property), $exception);
+            $object = $object->{$property};
+        }
+        return $object;
+    }
 }
