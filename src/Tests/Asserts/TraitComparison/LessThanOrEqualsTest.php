@@ -8,7 +8,7 @@ use Nicodev\Asserts\TraitAssertComparison;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class StrictEqualsTest
+ * Final class LessThanOrEqualsTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @copyright (c) 2017 Nicolas Giraud
  * @license MIT
  */
-final class StrictEqualsTest extends TestCase
+final class LessThanOrEqualsTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -37,27 +37,27 @@ final class StrictEqualsTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return mixed
+             * @return bool
              */
-            public function runOk()
+            public function runOk(): bool
             {
-                return static::assertStrictEquals(true, true, new Exception('This assertion fails.'));
+                return static::assertLessThanOrEquals(1, 1, new Exception('This assertion fails.'));
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return mixed
+             * @return bool
              */
-            public function runKo()
+            public function runKo(): bool
             {
-                return static::assertStrictEquals(true, 1, new Exception('This assertion fails.'));
+                return static::assertLessThanOrEquals(100, 1, new Exception('This assertion fails.'));
             }
         };
     }
 
     public function testMakeAssertionOK()
     {
-        static::assertSame(true, $this->testClass->runOk());
+        static::assertTrue($this->testClass->runOk());
     }
 
     public function testMakeAssertionKO()
