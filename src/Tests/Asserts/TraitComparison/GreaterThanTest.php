@@ -41,7 +41,7 @@ final class GreaterThanTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertGreaterThan(100, 100, new Exception('This assertion fails.'));
+                return static::assertGreaterThan(100, 1, new Exception('This assertion fails.'));
             }
 
             /**
@@ -50,7 +50,7 @@ final class GreaterThanTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertGreaterThan(1, 100, new Exception('This assertion fails.'));
+                return static::assertGreaterThan(100, 100, new Exception('This assertion fails.'));
             }
         };
     }

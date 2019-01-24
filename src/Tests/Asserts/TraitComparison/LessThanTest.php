@@ -41,7 +41,7 @@ final class LessThanTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertLessThan(1, 1, new Exception('This assertion fails.'));
+                return static::assertLessThan(1, 100, new Exception('This assertion fails.'));
             }
 
             /**
@@ -50,7 +50,7 @@ final class LessThanTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertLessThan(100, 1, new Exception('This assertion fails.'));
+                return static::assertLessThan(1, 1, new Exception('This assertion fails.'));
             }
         };
     }

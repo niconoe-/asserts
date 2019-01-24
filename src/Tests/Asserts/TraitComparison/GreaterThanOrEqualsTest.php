@@ -8,7 +8,7 @@ use Nicodev\Asserts\TraitAssertComparison;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class StrictGreaterThanTest
+ * Final class GreaterThanOrEqualsTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * @copyright (c) 2017 Nicolas Giraud
  * @license MIT
  */
-final class StrictGreaterThanTest extends TestCase
+final class GreaterThanOrEqualsTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -41,7 +41,7 @@ final class StrictGreaterThanTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertStrictGreaterThan(100, 1, new Exception('This assertion fails.'));
+                return static::assertGreaterThanOrEquals(100, 100, new Exception('This assertion fails.'));
             }
 
             /**
@@ -50,7 +50,7 @@ final class StrictGreaterThanTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertStrictGreaterThan(100, 100, new Exception('This assertion fails.'));
+                return static::assertGreaterThanOrEquals(1, 100, new Exception('This assertion fails.'));
             }
         };
     }

@@ -17,12 +17,13 @@ trait TraitAssertComparison
     use AbstractTraitAssert;
 
     /**
-     * Asserts that the given values are equals.
+     * Asserts that the given actual value equals the expected value.
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
+     * @throws \Exception
      */
     public static function assertEquals($actual, $expected, $exception)
     {
@@ -32,26 +33,28 @@ trait TraitAssertComparison
     }
 
     /**
-     * Asserts that the given values are strictly equals.
+     * Asserts that the given actual value strictly equals the expected value.
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
+     * @throws \Exception
      */
-    public static function assertStrictEquals($actual, $expected, $exception)
+    public static function assertStrictlyEquals($actual, $expected, $exception)
     {
         static::makeAssertion($actual === $expected, $exception);
         return $actual;
     }
 
     /**
-     * Asserts that the given values are not equals.
+     * Asserts that the given actual value does not equal the expected value.
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
+     * @throws \Exception
      */
     public static function assertNotEquals($actual, $expected, $exception)
     {
@@ -61,17 +64,33 @@ trait TraitAssertComparison
     }
 
     /**
-     * Asserts that the given values are strictly not equals.
+     * Asserts that the given actual value does not strictly equal the expected value.
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
+     * @throws \Exception
      */
-    public static function assertStrictNotEquals($actual, $expected, $exception)
+    public static function assertNotStrictlyEquals($actual, $expected, $exception)
     {
         static::makeAssertion($actual !== $expected, $exception);
         return $actual;
+    }
+
+    /**
+     * Asserts that the given actual value is greater than or equals the expected value.
+     *
+     * @param mixed $actual The actual value to test.
+     * @param mixed $expected The expected value.
+     * @param mixed $exception The exception to throw if the assertion fails.
+     * @return bool
+     * @throws \Exception
+     */
+    public static function assertGreaterThanOrEquals($actual, $expected, $exception): bool
+    {
+        static::makeAssertion($actual >= $expected, $exception);
+        return true;
     }
 
     /**
@@ -81,24 +100,26 @@ trait TraitAssertComparison
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return bool
+     * @throws \Exception
      */
     public static function assertGreaterThan($actual, $expected, $exception): bool
     {
-        static::makeAssertion($actual >= $expected, $exception);
+        static::makeAssertion($actual > $expected, $exception);
         return true;
     }
 
     /**
-     * Asserts that the given actual value is strictly greater than the expected value.
+     * Asserts that the given actual value is less than or equals the expected value.
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return bool
+     * @throws \Exception
      */
-    public static function assertStrictGreaterThan($actual, $expected, $exception): bool
+    public static function assertLessThanOrEquals($actual, $expected, $exception): bool
     {
-        static::makeAssertion($actual > $expected, $exception);
+        static::makeAssertion($actual <= $expected, $exception);
         return true;
     }
 
@@ -109,22 +130,9 @@ trait TraitAssertComparison
      * @param mixed $expected The expected value.
      * @param mixed $exception The exception to throw if the assertion fails.
      * @return bool
+     * @throws \Exception
      */
     public static function assertLessThan($actual, $expected, $exception): bool
-    {
-        static::makeAssertion($actual <= $expected, $exception);
-        return true;
-    }
-
-    /**
-     * Asserts that the given actual value is strictly less than the expected value.
-     *
-     * @param mixed $actual The actual value to test.
-     * @param mixed $expected The expected value.
-     * @param mixed $exception The exception to throw if the assertion fails.
-     * @return bool
-     */
-    public static function assertStrictLessThan($actual, $expected, $exception): bool
     {
         static::makeAssertion($actual < $expected, $exception);
         return true;
