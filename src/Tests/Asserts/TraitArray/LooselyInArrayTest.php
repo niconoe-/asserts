@@ -1,24 +1,24 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitType;
+namespace Nicodev\Tests\Asserts\TraitArray;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNotBoolTest
+ * Final class LooselyInArrayTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
- * @subpackage TraitType
+ * @subpackage TraitArray
  *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
  * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
-final class IsNotBoolTest extends TestCase
+final class LooselyInArrayTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -39,7 +39,8 @@ final class IsNotBoolTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertIsNotBool('true', new Exception('This assertion fails.'));
+                $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
+                return static::assertLooselyInArray($provider, '1', new Exception('This assertion fails.'));
             }
 
             /**
@@ -48,7 +49,8 @@ final class IsNotBoolTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertIsNotBool(false, new Exception('This assertion fails.'));
+                $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
+                return static::assertLooselyInArray($provider, 0, new Exception('This assertion fails.'));
             }
         };
     }

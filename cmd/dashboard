@@ -13,11 +13,13 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 # Set the URL registry where the docker image to based on is stored.
-REGISTRY="nicodocker91/qa-dashboard"
+REGISTRY="nicodocker91/qa-dashboard:7.2-rc4"
 
 # Set dynamic options for the command:
 # - Enable the --tty option if there is a tty.
 option_tty=$(if [ "not a tty" = "$(tty)" ]; then echo ""; else echo " --tty "; fi)
+
+acceptance_value=${1:-0}
 
 # Run the docker command.
 docker run --rm ${option_tty} \
@@ -26,4 +28,4 @@ docker run --rm ${option_tty} \
     --volume /etc/localtime:/etc/localtime:ro \
     --volume ${__root}/reports:/data/build \
     ${REGISTRY} \
-        Asserts
+        Asserts ${acceptance_value}

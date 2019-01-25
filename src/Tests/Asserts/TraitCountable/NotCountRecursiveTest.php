@@ -1,24 +1,24 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitType;
+namespace Nicodev\Tests\Asserts\TraitCountable;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNotBoolTest
+ * Final class NotCountRecursiveTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
- * @subpackage TraitType
+ * @subpackage TraitCountable
  *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
  * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
-final class IsNotBoolTest extends TestCase
+final class NotCountRecursiveTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -39,7 +39,8 @@ final class IsNotBoolTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertIsNotBool('true', new Exception('This assertion fails.'));
+                $provider = [[1], [2], [3], [4], [5]];
+                return static::assertNotCountRecursive($provider, 1, new Exception('This assertion fails.'));
             }
 
             /**
@@ -48,7 +49,8 @@ final class IsNotBoolTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertIsNotBool(false, new Exception('This assertion fails.'));
+                $provider = [[1], [2], [3], [4], [5]];
+                return static::assertNotCountRecursive($provider, 10, new Exception('This assertion fails.'));
             }
         };
     }

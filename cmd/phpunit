@@ -13,17 +13,14 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 # Set the URL registry where the docker image to based on is stored.
-REGISTRY="nicodocker91/phpunit"
+REGISTRY="nicodocker91/phpunit:7.2"
 
 # Set dynamic options for the command:
 # - Enable the --tty option if there is a tty.
 option_tty=$(if [ "not a tty" = "$(tty)" ]; then echo ""; else echo " --tty "; fi)
 
-# Build the reports folder where logs will be stored, and its symlink.
-mkdir -p reports/Asserts/$(date +'%Y%m%d0000') 2>/dev/null
-ln -sfn $(date +'%Y%m%d0000') reports/Asserts/current
-
-REPORTS_FOLDER="reports/Asserts/current/logs/phpunit"
+# Build the reports folder where logs will be stored.
+REPORTS_FOLDER="reports/Asserts/$(date +'%Y%m%d0000')/logs/phpunit"
 mkdir -p ${REPORTS_FOLDER} 2>/dev/null
 
 # As phpunit requires composer to be ran, check its existance before running the docker command.

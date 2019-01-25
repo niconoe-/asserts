@@ -1,24 +1,24 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitType;
+namespace Nicodev\Tests\Asserts\TraitBoolean;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNotBoolTest
+ * Final class LooselyTrueTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
- * @subpackage TraitType
+ * @subpackage TraitBoolean
  *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
  * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
-final class IsNotBoolTest extends TestCase
+final class LooselyTrueTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -39,7 +39,7 @@ final class IsNotBoolTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertIsNotBool('true', new Exception('This assertion fails.'));
+                return static::assertLooselyTrue(1, new Exception('This assertion fails.'));
             }
 
             /**
@@ -48,7 +48,7 @@ final class IsNotBoolTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertIsNotBool(false, new Exception('This assertion fails.'));
+                return static::assertLooselyTrue(0, new Exception('This assertion fails.'));
             }
         };
     }

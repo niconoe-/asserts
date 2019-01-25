@@ -13,18 +13,21 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 # Set the URL registry where the docker image to based on is stored.
-REGISTRY="nicodocker91/phpmetrics"
+REGISTRY="nicodocker91/phpmetrics:7.2"
 
 # Set dynamic options for the command:
 # - Enable the --tty option if there is a tty.
 option_tty=$(if [ "not a tty" = "$(tty)" ]; then echo ""; else echo " --tty "; fi)
 
-# Build the reports folder where logs will be stored, and its symlink.
-mkdir -p reports/Asserts/$(date +'%Y%m%d0000') 2>/dev/null
-ln -sfn $(date +'%Y%m%d0000') reports/Asserts/current
-
-REPORTS_FOLDER="reports/Asserts/current/logs/phpmetrics"
+# Build the reports folder where logs will be stored.
+REPORTS_FOLDER="reports/Asserts/$(date +'%Y%m%d0000')/logs/phpmetrics"
 mkdir -p ${REPORTS_FOLDER} 2>/dev/null
+
+PATHS_TO_COMPUTE="composer.json,src/Asserts"
+[[ -f composer.lock ]] && PATHS_TO_COMPUTE="${PATHS_TO_COMPUTE},composer.lock"
+
+JUNIT_REPORT=""
+[[ -f ${REPORTS_FOLDER}/../phpunit/phpunit-unit.xml ]] && JUNIT_REPORT="--junit=${REPORTS_FOLDER}/../phpunit/phpunit-unit.xml"
 
 # Run the docker command.
 docker run --rm ${option_tty} \
@@ -32,8 +35,7 @@ docker run --rm ${option_tty} \
     --volume ${__root}:/data/www \
     ${REGISTRY} \
         --exclude=Tests,tests,.git,vendor \
+        --git \
+        ${JUNIT_REPORT} \
         --report-html=${REPORTS_FOLDER} \
-        composer.lock,composer.json,src
-
-# Add --junit=${REPORTS_FOLDER}/../phpunit/phpunit-unit.xml \ option when phpmetrics reach v2.3.*
-# Add --git \ option when phpmetrics reach v2.3.*
+        ${PATHS_TO_COMPUTE}
