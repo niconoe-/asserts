@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Nicodev\Tests\Asserts\TraitType;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertType;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -15,10 +15,8 @@ use stdClass;
  * @package Nicodev\Tests\Asserts
  * @subpackage TraitType
  *
- * @requires PHP 7.0
- *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
 final class IsNotObjectTest extends TestCase
@@ -34,7 +32,7 @@ final class IsNotObjectTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertType;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -56,12 +54,12 @@ final class IsNotObjectTest extends TestCase
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
         static::assertTrue($this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');

@@ -1,26 +1,24 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitComparison;
+namespace Nicodev\Tests\Asserts\TraitType;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertComparison;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class StrictEqualsTest
+ * Final class IsNotNullTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
- * @subpackage TraitComparison
- *
- * @requires PHP 7.0
+ * @subpackage TraitType
  *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
-final class StrictEqualsTest extends TestCase
+final class IsNotNullTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -33,34 +31,34 @@ final class StrictEqualsTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertComparison;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
-             * @return mixed
+             * @return bool
              */
-            public function runOk()
+            public function runOk(): bool
             {
-                return static::assertStrictEquals(true, true, new Exception('This assertion fails.'));
+                return static::assertIsNotNull(false, new Exception('This assertion fails.'));
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return mixed
+             * @return bool
              */
-            public function runKo()
+            public function runKo(): bool
             {
-                return static::assertStrictEquals(true, 1, new Exception('This assertion fails.'));
+                return static::assertIsNotNull(null, new Exception('This assertion fails.'));
             }
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
-        static::assertSame(true, $this->testClass->runOk());
+        static::assertTrue($this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');

@@ -4,9 +4,8 @@ declare(strict_types = 1);
 namespace Nicodev\Tests\Asserts\TraitObject;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertObject;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 /**
  * Final class PropertiesInCascadeTest
@@ -15,10 +14,8 @@ use stdClass;
  * @package Nicodev\Tests\Asserts
  * @subpackage TraitObject
  *
- * @requires PHP 7.0
- *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2018 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
 final class PropertiesInCascadeTest extends TestCase
@@ -34,7 +31,7 @@ final class PropertiesInCascadeTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertObject;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -42,11 +39,7 @@ final class PropertiesInCascadeTest extends TestCase
              */
             public function runOk()
             {
-                $a = new stdClass();
-                $a->b = new stdClass();
-                $a->b->c = new stdClass();
-                $a->b->c->d = 'bar';
-
+                $a = (object)['b' => (object)['c' => (object)['d' => 'bar']]];
                 return static::assertPropertiesInCascade($a, new Exception('This assertion fails.'), 'b', 'c', 'd');
             }
 
@@ -56,22 +49,18 @@ final class PropertiesInCascadeTest extends TestCase
              */
             public function runKo()
             {
-                $a = new stdClass();
-                $a->b = new stdClass();
-                $a->b->c = new stdClass();
-                $a->b->c->d = 'baz';
-
+                $a = (object)['b' => (object)['c' => (object)['d' => 'baz']]];
                 return static::assertPropertiesInCascade($a, new Exception('This assertion fails.'), 'b', 'x', 'z');
             }
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
         static::assertSame('bar', $this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');

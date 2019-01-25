@@ -1,27 +1,24 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitObject;
+namespace Nicodev\Tests\Asserts\TraitComparison;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertObject;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 /**
- * Final class ObjectNotFalseTest
+ * Final class LessThanOrEqualsTest
  *
  * @category Tests
  * @package Nicodev\Tests\Asserts
- * @subpackage TraitObject
- *
- * @requires PHP 7.0
+ * @subpackage TraitComparison
  *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
-final class ObjectNotFalseTest extends TestCase
+final class LessThanOrEqualsTest extends TestCase
 {
     /**
      * @var object anonymous class
@@ -34,34 +31,34 @@ final class ObjectNotFalseTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertObject;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
-             * @return mixed
+             * @return bool
              */
-            public function runOk()
+            public function runOk(): bool
             {
-                return static::assertObjectNotFalse(new stdClass(), new Exception('This assertion fails.'));
+                return static::assertLessThanOrEquals(1, 1, new Exception('This assertion fails.'));
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return mixed
+             * @return bool
              */
-            public function runKo()
+            public function runKo(): bool
             {
-                return static::assertObjectNotFalse(false, new Exception('This assertion fails.'));
+                return static::assertLessThanOrEquals(100, 1, new Exception('This assertion fails.'));
             }
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
-        static::assertInstanceOf(stdClass::class, $this->testClass->runOk());
+        static::assertTrue($this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');
