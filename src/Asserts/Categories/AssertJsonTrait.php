@@ -1,28 +1,28 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Asserts;
+namespace Nicodev\Asserts\Categories;
+
+use Throwable;
 
 /**
- * Trait TraitAssertJson
+ * Trait AssertJsonTrait
  *
- * @package Nicodev\Asserts
+ * @package Nicodev\Asserts\Categories
  *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2018 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
-trait TraitAssertJson
+trait AssertJsonTrait
 {
-    use AbstractTraitAssert;
-
     /**
      * Asserts that the last JSON error is NONE.
      *
-     * @param mixed $exception The exception to throw if the assertion fails.
+     * @param Throwable $exception The exception to throw if the assertion fails.
      * @return bool True if assertion does not fail.
      */
-    public static function assertJsonErrorNone($exception): bool
+    public static function assertJsonErrorNone(Throwable $exception): bool
     {
         static::makeAssertion(\JSON_ERROR_NONE === \json_last_error(), $exception);
         return true;

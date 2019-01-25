@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Nicodev\Tests\Asserts\TraitArray;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertArray;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,10 +14,8 @@ use PHPUnit\Framework\TestCase;
  * @package Nicodev\Tests\Asserts
  * @subpackage TraitArray
  *
- * @requires PHP 7.0
- *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
 final class KeyExistsTest extends TestCase
@@ -33,7 +31,7 @@ final class KeyExistsTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertArray;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -57,12 +55,12 @@ final class KeyExistsTest extends TestCase
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
         static::assertSame('AZERTY', $this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');

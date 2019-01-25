@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Nicodev\Tests\Asserts\TraitFile;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertFile;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,10 +14,8 @@ use PHPUnit\Framework\TestCase;
  * @package Nicodev\Tests\Asserts
  * @subpackage TraitFile
  *
- * @requires PHP 7.0
- *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
 final class IsExecutableTest extends TestCase
@@ -33,7 +31,7 @@ final class IsExecutableTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertFile;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -42,6 +40,7 @@ final class IsExecutableTest extends TestCase
             public function runOk(): string
             {
                 $path = __DIR__ . '/data/directory/executable';
+                \chmod($path, 0111);
                 return static::assertIsExecutable($path, new Exception('This assertion fails.'));
             }
 
@@ -52,17 +51,24 @@ final class IsExecutableTest extends TestCase
             public function runKo(): string
             {
                 $path = __DIR__ . '/data/directory/writable';
+                \chmod($path, 0222);
                 return static::assertIsExecutable($path, new Exception('This assertion fails.'));
             }
         };
     }
 
-    public function testMakeAssertionOK()
+    public function tearDown()
+    {
+        \chmod(__DIR__ . '/data/directory/executable', 0755);
+        \chmod(__DIR__ . '/data/directory/writable', 0755);
+    }
+
+    public function testMakeAssertionOK(): void
     {
         static::assertSame(__DIR__ . '/data/directory/executable', $this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');

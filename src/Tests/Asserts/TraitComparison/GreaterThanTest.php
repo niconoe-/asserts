@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Nicodev\Tests\Asserts\TraitComparison;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertComparison;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,10 +14,8 @@ use PHPUnit\Framework\TestCase;
  * @package Nicodev\Tests\Asserts
  * @subpackage TraitComparison
  *
- * @requires PHP 7.0
- *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
 final class GreaterThanTest extends TestCase
@@ -33,7 +31,7 @@ final class GreaterThanTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertComparison;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -55,12 +53,12 @@ final class GreaterThanTest extends TestCase
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
         static::assertTrue($this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Nicodev\Tests\Asserts\TraitBoolean;
 
 use Exception;
-use Nicodev\Asserts\TraitAssertBoolean;
+use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,10 +14,8 @@ use PHPUnit\Framework\TestCase;
  * @package Nicodev\Tests\Asserts
  * @subpackage TraitBoolean
  *
- * @requires PHP 7.0
- *
  * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2017 Nicolas Giraud
+ * @copyright (c) 2019 Nicolas Giraud
  * @license MIT
  */
 final class TrueTest extends TestCase
@@ -33,7 +31,7 @@ final class TrueTest extends TestCase
     {
         $this->testClass = new class()
         {
-            use TraitAssertBoolean;
+            use AssertTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -41,7 +39,7 @@ final class TrueTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertTrue(1, new Exception('This assertion fails.'));
+                return static::assertTrue(true, new Exception('This assertion fails.'));
             }
 
             /**
@@ -50,17 +48,17 @@ final class TrueTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertTrue(0, new Exception('This assertion fails.'));
+                return static::assertTrue(1, new Exception('This assertion fails.'));
             }
         };
     }
 
-    public function testMakeAssertionOK()
+    public function testMakeAssertionOK(): void
     {
         static::assertTrue($this->testClass->runOk());
     }
 
-    public function testMakeAssertionKO()
+    public function testMakeAssertionKO(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');
