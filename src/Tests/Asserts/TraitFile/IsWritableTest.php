@@ -57,6 +57,12 @@ final class IsWritableTest extends TestCase
         };
     }
 
+    public function tearDown()
+    {
+        \chmod(__DIR__ . '/data/directory/writable', 0755);
+        \chmod(__DIR__ . '/data/directory/readable', 0755);
+    }
+
     public function testMakeAssertionOK(): void
     {
         static::assertSame(__DIR__ . '/data/directory/writable', $this->testClass->runOk());

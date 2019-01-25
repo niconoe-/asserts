@@ -57,6 +57,12 @@ final class IsExecutableTest extends TestCase
         };
     }
 
+    public function tearDown()
+    {
+        \chmod(__DIR__ . '/data/directory/executable', 0755);
+        \chmod(__DIR__ . '/data/directory/writable', 0755);
+    }
+
     public function testMakeAssertionOK(): void
     {
         static::assertSame(__DIR__ . '/data/directory/executable', $this->testClass->runOk());

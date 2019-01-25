@@ -57,6 +57,12 @@ final class IsReadableTest extends TestCase
         };
     }
 
+    public function tearDown()
+    {
+        \chmod(__DIR__ . '/data/directory/readable', 0755);
+        \chmod(__DIR__ . '/data/directory/executable', 0755);
+    }
+
     public function testMakeAssertionOK(): void
     {
         static::assertSame(__DIR__ . '/data/directory/readable', $this->testClass->runOk());
