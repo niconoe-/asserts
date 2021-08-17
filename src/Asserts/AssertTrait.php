@@ -34,11 +34,11 @@ trait AssertTrait
      *
      * @param mixed $expected What is expected to be true.
      * @param Throwable $throwable The Throwable object instance to throw.
-     * @throws
      */
     protected static function makeAssertion($expected, Throwable $throwable): void
     {
         if (!$expected) {
+            /** @psalm-suppress MissingThrowsDocblock Must NOT catch this here. */
             throw $throwable;
         }
     }
