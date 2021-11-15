@@ -21,10 +21,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
      */
-    public static function assertLooselyEquals($actual, $expected, Throwable $exception)
+    public static function assertLooselyEquals($actual, $expected, $exception)
     {
         /** @noinspection TypeUnsafeComparisonInspection This assertion is wanted to be unsafe type. */
         static::makeAssertion($actual == $expected, $exception);
@@ -36,10 +36,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
      */
-    public static function assertEquals($actual, $expected, Throwable $exception)
+    public static function assertEquals($actual, $expected, $exception)
     {
         static::makeAssertion($actual === $expected, $exception);
         return $actual;
@@ -50,10 +50,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
      */
-    public static function assertLooselyNotEquals($actual, $expected, Throwable $exception)
+    public static function assertLooselyNotEquals($actual, $expected, $exception)
     {
         /** @noinspection TypeUnsafeComparisonInspection This assertion is wanted to be unsafe type. */
         static::makeAssertion($actual != $expected, $exception);
@@ -65,10 +65,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
      */
-    public static function assertNotEquals($actual, $expected, Throwable $exception)
+    public static function assertNotEquals($actual, $expected, $exception)
     {
         static::makeAssertion($actual !== $expected, $exception);
         return $actual;
@@ -79,10 +79,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertGreaterThanOrEquals($actual, $expected, Throwable $exception): bool
+    public static function assertGreaterThanOrEquals($actual, $expected, $exception): bool
     {
         static::makeAssertion($actual >= $expected, $exception);
         return true;
@@ -93,10 +93,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertGreaterThan($actual, $expected, Throwable $exception): bool
+    public static function assertGreaterThan($actual, $expected, $exception): bool
     {
         static::makeAssertion($actual > $expected, $exception);
         return true;
@@ -107,10 +107,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertLessThanOrEquals($actual, $expected, Throwable $exception): bool
+    public static function assertLessThanOrEquals($actual, $expected, $exception): bool
     {
         static::makeAssertion($actual <= $expected, $exception);
         return true;
@@ -121,10 +121,10 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertLessThan($actual, $expected, Throwable $exception): bool
+    public static function assertLessThan($actual, $expected, $exception): bool
     {
         static::makeAssertion($actual < $expected, $exception);
         return true;
