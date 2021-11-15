@@ -19,10 +19,10 @@ trait AssertJsonTrait
     /**
      * Asserts that the last JSON error is NONE.
      *
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param Throwable|callable $exception The exception to throw if the assertion fails.
      * @return bool True if assertion does not fail.
      */
-    public static function assertJsonErrorNone(Throwable $exception): bool
+    public static function assertJsonErrorNone($exception): bool
     {
         static::makeAssertion(\JSON_ERROR_NONE === \json_last_error(), $exception);
         return true;
