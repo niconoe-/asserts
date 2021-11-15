@@ -1,18 +1,20 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nicodev\Asserts\Categories;
 
 use Throwable;
+use function is_dir;
+use function is_executable;
+use function is_file;
+use function is_link;
+use function is_readable;
+use function is_writable;
 
 /**
  * Trait AssertFileTrait
  *
- * @package Nicodev\Asserts\Categories
- *
- * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2018 Nicolas Giraud
- * @license MIT
+ * List of assertions associated to file or directory management.
  */
 trait AssertFileTrait
 {
@@ -20,12 +22,12 @@ trait AssertFileTrait
      * Asserts that the given path is a directory path.
      *
      * @param string $path The path to check that must be a directory.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return string The directory path if the assertion does not fail.
      */
-    public static function assertIsDir(string $path, $exception): string
+    protected static function assertIsDir(string $path, callable $exception): string
     {
-        static::makeAssertion(\is_dir($path), $exception);
+        self::makeAssertion(is_dir($path), $exception);
         return $path;
     }
 
@@ -33,12 +35,12 @@ trait AssertFileTrait
      * Asserts that the given path is a file path.
      *
      * @param string $path The path to check that must be a file.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return string The file path if the assertion does not fail.
      */
-    public static function assertIsFile(string $path, $exception): string
+    protected static function assertIsFile(string $path, callable $exception): string
     {
-        static::makeAssertion(\is_file($path), $exception);
+        self::makeAssertion(is_file($path), $exception);
         return $path;
     }
 
@@ -46,12 +48,12 @@ trait AssertFileTrait
      * Asserts that the given path is a link path.
      *
      * @param string $path The path to check that must be a link.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return string The link path if the assertion does not fail.
      */
-    public static function assertIsLink(string $path, $exception): string
+    protected static function assertIsLink(string $path, callable $exception): string
     {
-        static::makeAssertion(\is_link($path), $exception);
+        self::makeAssertion(is_link($path), $exception);
         return $path;
     }
 
@@ -59,12 +61,12 @@ trait AssertFileTrait
      * Asserts that the given path is readable.
      *
      * @param string $path The path to check that must be readable.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return string The path if the assertion does not fail.
      */
-    public static function assertIsReadable(string $path, $exception): string
+    protected static function assertIsReadable(string $path, callable $exception): string
     {
-        static::makeAssertion(\is_readable($path), $exception);
+        self::makeAssertion(is_readable($path), $exception);
         return $path;
     }
 
@@ -72,12 +74,12 @@ trait AssertFileTrait
      * Asserts that the given path is writable.
      *
      * @param string $path The path to check that must be writable.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return string The path if the assertion does not fail.
      */
-    public static function assertIsWritable(string $path, $exception): string
+    protected static function assertIsWritable(string $path, callable $exception): string
     {
-        static::makeAssertion(\is_writable($path), $exception);
+        self::makeAssertion(is_writable($path), $exception);
         return $path;
     }
 
@@ -85,12 +87,12 @@ trait AssertFileTrait
      * Asserts that the given path is executable.
      *
      * @param string $path The path to check that must be executable.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return string The path if the assertion does not fail.
      */
-    public static function assertIsExecutable(string $path, $exception): string
+    protected static function assertIsExecutable(string $path, callable $exception): string
     {
-        static::makeAssertion(\is_executable($path), $exception);
+        self::makeAssertion(is_executable($path), $exception);
         return $path;
     }
 }
