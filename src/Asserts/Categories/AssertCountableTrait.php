@@ -1,100 +1,102 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nicodev\Asserts\Categories;
 
+use Countable;
 use Throwable;
+use function count;
+use const COUNT_RECURSIVE;
 
 /**
  * Trait AssertCountableTrait
  *
- * @package Nicodev\Asserts\Categories
- *
- * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2019 Nicolas Giraud
- * @license MIT
+ * List of assertions associated to countable elements.
  */
 trait AssertCountableTrait
 {
     /**
      * Asserts that the given array is empty.
      *
-     * @param array|\Countable $countableElement The array or the countable object to assert its emptiness.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param array<mixed>|Countable $array The array or the countable object to assert its emptiness.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertEmpty($countableElement, $exception): bool
+    protected static function assertEmpty(array|Countable $array, callable $exception): bool
     {
-        static::makeAssertion(0 === \count($countableElement), $exception);
+        self::makeAssertion(0 === count($array), $exception);
         return true;
     }
 
     /**
      * Asserts that the given array is not empty.
      *
-     * @param array|\Countable $countableElement The array or the countable object to assert its emptiness.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param array<mixed>|Countable $array The array or the countable object to assert its emptiness.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertNotEmpty($countableElement, $exception): bool
+    protected static function assertNotEmpty(array|Countable $array, callable $exception): bool
     {
-        static::makeAssertion(0 !== \count($countableElement), $exception);
+        self::makeAssertion(0 !== count($array), $exception);
         return true;
     }
 
     /**
      * Asserts that the given array contains the given number of elements.
      *
-     * @param array|\Countable $countableElement The array or the countable object to count its content.
+     * @param array<mixed>|Countable $array The array or the countable object to count its content.
      * @param int $expected The number of expected elements.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertCount($countableElement, int $expected, $exception): bool
+    protected static function assertCount(array|Countable $array, int $expected, callable $exception): bool
     {
-        static::makeAssertion(\count($countableElement) === $expected, $exception);
+        self::makeAssertion(count($array) === $expected, $exception);
         return true;
     }
 
     /**
      * Asserts that the given array does not contain the given number of elements.
      *
-     * @param array|\Countable $countableElement The array or the countable object to count its content.
+     * @param array<mixed>|Countable $array The array or the countable object to count its content.
      * @param int $notExpected The number of not expected elements.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertNotCount($countableElement, int $notExpected, $exception): bool
+    protected static function assertNotCount(array|Countable $array, int $notExpected, callable $exception): bool
     {
-        static::makeAssertion(\count($countableElement) !== $notExpected, $exception);
+        self::makeAssertion(count($array) !== $notExpected, $exception);
         return true;
     }
 
     /**
      * Asserts that the given array contains the given number of elements, recursively.
      *
-     * @param array|\Countable $countableElement The array or the countable object to count its content, recursively.
+     * @param array<mixed>|Countable $array The array or the countable object to count its content, recursively.
      * @param int $expected The total number of expected elements.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertCountRecursive($countableElement, int $expected, $exception): bool
+    protected static function assertCountRecursive(array|Countable $array, int $expected, callable $exception): bool
     {
-        static::makeAssertion(\count($countableElement, \COUNT_RECURSIVE) === $expected, $exception);
+        self::makeAssertion(count($array, COUNT_RECURSIVE) === $expected, $exception);
         return true;
     }
 
     /**
      * Asserts that the given array contains the given number of elements, recursively.
      *
-     * @param array|\Countable $countableElement The array or the countable object to count its content, recursively.
+     * @param array<mixed>|Countable $array The array or the countable object to count its content, recursively.
      * @param int $notExpected The total number of not expected elements.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertNotCountRecursive($countableElement, int $notExpected, $exception): bool
-    {
-        static::makeAssertion(\count($countableElement, \COUNT_RECURSIVE) !== $notExpected, $exception);
+    protected static function assertNotCountRecursive(
+        array|Countable $array,
+        int $notExpected,
+        callable $exception
+    ): bool {
+        self::makeAssertion(count($array, COUNT_RECURSIVE) !== $notExpected, $exception);
         return true;
     }
 }

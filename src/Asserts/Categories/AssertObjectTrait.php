@@ -1,18 +1,17 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nicodev\Asserts\Categories;
 
 use Throwable;
+use function array_map;
+use function is_a;
+use function property_exists;
 
 /**
  * Trait AssertObjectTrait
  *
- * @package Nicodev\Asserts\Categories
- *
- * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2019 Nicolas Giraud
- * @license MIT
+ * List of assertions associated to object management.
  */
 trait AssertObjectTrait
 {
@@ -21,12 +20,12 @@ trait AssertObjectTrait
      *
      * @param mixed $object The given object to test.
      * @param string $type The expected type of the given object.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return mixed The given object tested.
      */
-    public static function assertObjectIsA($object, string $type, $exception)
+    protected static function assertObjectIsA(mixed $object, string $type, callable $exception): mixed
     {
-        static::makeAssertion(\is_a($object, $type), $exception);
+        self::makeAssertion(is_a($object, $type), $exception);
         return $object;
     }
 
@@ -34,16 +33,19 @@ trait AssertObjectTrait
      * Asserts that a list of properties exist in cascade from an original object.
      *
      * @param mixed $object The original object to check properties in cascade.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
-     * @param string ...$propertiesInCascade The list of properties to check in cascade.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @param string ...$properties The list of properties to check in cascade.
      * @return mixed The value of the last element to check.
      */
-    public static function assertPropertiesInCascade($object, $exception, string ...$propertiesInCascade)
-    {
-        foreach ($propertiesInCascade as $property) {
-            static::makeAssertion(\property_exists($object, $property), $exception);
+    protected static function assertPropertiesInCascade(
+        mixed $object,
+        callable $exception,
+        string ...$properties
+    ): mixed {
+        array_map(static function (string $property) use (&$object, $exception): void {
+            self::makeAssertion(property_exists($object, $property), $exception);
             $object = $object->{$property};
-        }
+        }, $properties);
         return $object;
     }
 }

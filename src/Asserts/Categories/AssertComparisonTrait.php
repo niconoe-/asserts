@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Nicodev\Asserts\Categories;
 
@@ -8,55 +8,21 @@ use Throwable;
 /**
  * Trait AssertComparisonTrait
  *
- * @package Nicodev\Asserts\Categories
- *
- * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2019 Nicolas Giraud
- * @license MIT
+ * List of assertions associated to comparison.
  */
 trait AssertComparisonTrait
 {
-    /**
-     * Asserts that the given values are loosely equals.
-     *
-     * @param mixed $actual The actual value to test.
-     * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
-     * @return mixed The actual value tested.
-     */
-    public static function assertLooselyEquals($actual, $expected, $exception)
-    {
-        /** @noinspection TypeUnsafeComparisonInspection This assertion is wanted to be unsafe type. */
-        static::makeAssertion($actual == $expected, $exception);
-        return $actual;
-    }
-
     /**
      * Asserts that the given values are strictly equals.
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
      */
-    public static function assertEquals($actual, $expected, $exception)
+    protected static function assertEquals(mixed $actual, mixed $expected, callable $exception): mixed
     {
-        static::makeAssertion($actual === $expected, $exception);
-        return $actual;
-    }
-
-    /**
-     * Asserts that the given values are loosely not equals.
-     *
-     * @param mixed $actual The actual value to test.
-     * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
-     * @return mixed The actual value tested.
-     */
-    public static function assertLooselyNotEquals($actual, $expected, $exception)
-    {
-        /** @noinspection TypeUnsafeComparisonInspection This assertion is wanted to be unsafe type. */
-        static::makeAssertion($actual != $expected, $exception);
+        self::makeAssertion($actual === $expected, $exception);
         return $actual;
     }
 
@@ -65,12 +31,12 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return mixed The actual value tested.
      */
-    public static function assertNotEquals($actual, $expected, $exception)
+    protected static function assertNotEquals(mixed $actual, mixed $expected, callable $exception): mixed
     {
-        static::makeAssertion($actual !== $expected, $exception);
+        self::makeAssertion($actual !== $expected, $exception);
         return $actual;
     }
 
@@ -79,12 +45,12 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertGreaterThanOrEquals($actual, $expected, $exception): bool
+    protected static function assertGreaterThanOrEquals(mixed $actual, mixed $expected, callable $exception): bool
     {
-        static::makeAssertion($actual >= $expected, $exception);
+        self::makeAssertion($actual >= $expected, $exception);
         return true;
     }
 
@@ -93,12 +59,12 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertGreaterThan($actual, $expected, $exception): bool
+    protected static function assertGreaterThan(mixed $actual, mixed $expected, callable $exception): bool
     {
-        static::makeAssertion($actual > $expected, $exception);
+        self::makeAssertion($actual > $expected, $exception);
         return true;
     }
 
@@ -107,12 +73,12 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertLessThanOrEquals($actual, $expected, $exception): bool
+    protected static function assertLessThanOrEquals(mixed $actual, mixed $expected, callable $exception): bool
     {
-        static::makeAssertion($actual <= $expected, $exception);
+        self::makeAssertion($actual <= $expected, $exception);
         return true;
     }
 
@@ -121,12 +87,12 @@ trait AssertComparisonTrait
      *
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
-     * @param Throwable|callable $exception The exception to throw if the assertion fails.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertLessThan($actual, $expected, $exception): bool
+    protected static function assertLessThan(mixed $actual, mixed $expected, callable $exception): bool
     {
-        static::makeAssertion($actual < $expected, $exception);
+        self::makeAssertion($actual < $expected, $exception);
         return true;
     }
 }
