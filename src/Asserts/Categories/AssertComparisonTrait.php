@@ -15,10 +15,12 @@ trait AssertComparisonTrait
     /**
      * Asserts that the given values are strictly equals.
      *
-     * @param mixed $actual The actual value to test.
+     * @template T
+     *
+     * @param T $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return mixed The actual value tested.
+     * @return T The actual value tested.
      */
     protected static function assertEquals(mixed $actual, mixed $expected, callable $exception): mixed
     {
@@ -29,10 +31,12 @@ trait AssertComparisonTrait
     /**
      * Asserts that the given values are strictly not equals.
      *
-     * @param mixed $actual The actual value to test.
+     * @template T
+     *
+     * @param T $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return mixed The actual value tested.
+     * @return T The actual value tested.
      */
     protected static function assertNotEquals(mixed $actual, mixed $expected, callable $exception): mixed
     {
@@ -46,7 +50,7 @@ trait AssertComparisonTrait
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertGreaterThanOrEquals(mixed $actual, mixed $expected, callable $exception): bool
     {
@@ -60,7 +64,7 @@ trait AssertComparisonTrait
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertGreaterThan(mixed $actual, mixed $expected, callable $exception): bool
     {
@@ -74,7 +78,7 @@ trait AssertComparisonTrait
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertLessThanOrEquals(mixed $actual, mixed $expected, callable $exception): bool
     {
@@ -88,7 +92,7 @@ trait AssertComparisonTrait
      * @param mixed $actual The actual value to test.
      * @param mixed $expected The expected value.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertLessThan(mixed $actual, mixed $expected, callable $exception): bool
     {

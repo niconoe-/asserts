@@ -20,7 +20,7 @@ trait AssertCountableTrait
      *
      * @param array<mixed>|Countable $array The array or the countable object to assert its emptiness.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertEmpty(array|Countable $array, callable $exception): bool
     {
@@ -33,7 +33,7 @@ trait AssertCountableTrait
      *
      * @param array<mixed>|Countable $array The array or the countable object to assert its emptiness.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertNotEmpty(array|Countable $array, callable $exception): bool
     {
@@ -47,7 +47,7 @@ trait AssertCountableTrait
      * @param array<mixed>|Countable $array The array or the countable object to count its content.
      * @param int $expected The number of expected elements.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertCount(array|Countable $array, int $expected, callable $exception): bool
     {
@@ -61,7 +61,7 @@ trait AssertCountableTrait
      * @param array<mixed>|Countable $array The array or the countable object to count its content.
      * @param int $notExpected The number of not expected elements.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertNotCount(array|Countable $array, int $notExpected, callable $exception): bool
     {
@@ -75,7 +75,7 @@ trait AssertCountableTrait
      * @param array<mixed>|Countable $array The array or the countable object to count its content, recursively.
      * @param int $expected The total number of expected elements.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertCountRecursive(array|Countable $array, int $expected, callable $exception): bool
     {
@@ -89,7 +89,7 @@ trait AssertCountableTrait
      * @param array<mixed>|Countable $array The array or the countable object to count its content, recursively.
      * @param int $notExpected The total number of not expected elements.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertNotCountRecursive(
         array|Countable $array,

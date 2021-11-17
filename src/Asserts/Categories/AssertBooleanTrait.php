@@ -17,7 +17,7 @@ trait AssertBooleanTrait
      *
      * @param mixed $condition The condition to assert that must be strictly true.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertTrue(mixed $condition, callable $exception): bool
     {
@@ -30,7 +30,7 @@ trait AssertBooleanTrait
      *
      * @param mixed $condition The condition to assert that must be strictly not true.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return false
      */
     protected static function assertNotTrue(mixed $condition, callable $exception): bool
     {
@@ -43,7 +43,7 @@ trait AssertBooleanTrait
      *
      * @param mixed $condition The condition to assert that must be strictly false.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return false
      */
     protected static function assertFalse(mixed $condition, callable $exception): bool
     {
@@ -56,7 +56,7 @@ trait AssertBooleanTrait
      *
      * @param mixed $condition The condition to assert that must be strictly not false.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertNotFalse(mixed $condition, callable $exception): bool
     {

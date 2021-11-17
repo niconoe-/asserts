@@ -17,10 +17,12 @@ trait AssertArrayTrait
     /**
      * Asserts that the given key exists in the given array.
      *
-     * @param array<int|string, mixed> $array The given array to check the key existence.
+     * @template T
+     *
+     * @param array<int|string, T> $array The given array to check the key existence.
      * @param int|string $key The key to check.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return mixed The value of the key in the array.
+     * @return T The value of the key in the array.
      */
     protected static function assertKeyExists(array $array, int|string $key, callable $exception): mixed
     {
@@ -31,8 +33,10 @@ trait AssertArrayTrait
     /**
      * Asserts that the given element exists in the given array, with strict comparison.
      *
-     * @param array<int|string, mixed> $array The given array to check the element existence.
-     * @param mixed $value The value to check.
+     * @template T
+     *
+     * @param array<int|string, T> $array The given array to check the element existence.
+     * @param T $value The value to check.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
