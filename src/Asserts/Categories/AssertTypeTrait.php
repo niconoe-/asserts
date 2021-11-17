@@ -29,7 +29,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNull(mixed $variable, callable $exception): bool
     {
@@ -42,7 +42,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsResource(mixed $variable, callable $exception): bool
     {
@@ -55,7 +55,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNumeric(mixed $variable, callable $exception): bool
     {
@@ -68,7 +68,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsObject(mixed $variable, callable $exception): bool
     {
@@ -81,7 +81,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsCallable(mixed $variable, callable $exception): bool
     {
@@ -94,7 +94,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsFloat(mixed $variable, callable $exception): bool
     {
@@ -107,7 +107,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsInt(mixed $variable, callable $exception): bool
     {
@@ -120,7 +120,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNumber(mixed $variable, callable $exception): bool
     {
@@ -133,7 +133,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsString(mixed $variable, callable $exception): bool
     {
@@ -146,7 +146,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsBool(mixed $variable, callable $exception): bool
     {
@@ -159,7 +159,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsArray(mixed $variable, callable $exception): bool
     {
@@ -172,7 +172,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsScalar(mixed $variable, callable $exception): bool
     {
@@ -186,7 +186,7 @@ trait AssertTypeTrait
      * @param array<string> $types The given types.
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsTypeOf(array $types, mixed $variable, callable $exception): bool
     {
@@ -199,7 +199,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotNull(mixed $variable, callable $exception): bool
     {
@@ -212,7 +212,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotResource(mixed $variable, callable $exception): bool
     {
@@ -225,7 +225,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotNumeric(mixed $variable, callable $exception): bool
     {
@@ -238,7 +238,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotObject(mixed $variable, callable $exception): bool
     {
@@ -251,7 +251,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotCallable(mixed $variable, callable $exception): bool
     {
@@ -264,7 +264,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotFloat(mixed $variable, callable $exception): bool
     {
@@ -277,7 +277,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotInt(mixed $variable, callable $exception): bool
     {
@@ -290,7 +290,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotNumber(mixed $variable, callable $exception): bool
     {
@@ -303,7 +303,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotString(mixed $variable, callable $exception): bool
     {
@@ -316,7 +316,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotBool(mixed $variable, callable $exception): bool
     {
@@ -329,7 +329,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotArray(mixed $variable, callable $exception): bool
     {
@@ -342,7 +342,7 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotScalar(mixed $variable, callable $exception): bool
     {
@@ -356,7 +356,7 @@ trait AssertTypeTrait
      * @param array<string> $types The given types.
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return bool
+     * @return true
      */
     protected static function assertIsNotTypeOf(array $types, mixed $variable, callable $exception): bool
     {

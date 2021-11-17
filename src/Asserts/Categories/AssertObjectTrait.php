@@ -18,10 +18,12 @@ trait AssertObjectTrait
     /**
      * Asserts that the given object is an instance of the given type.
      *
-     * @param mixed $object The given object to test.
+     * @template T
+     *
+     * @param T $object The given object to test.
      * @param string $type The expected type of the given object.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return mixed The given object tested.
+     * @return T The given object tested.
      */
     protected static function assertObjectIsA(mixed $object, string $type, callable $exception): mixed
     {
@@ -32,13 +34,13 @@ trait AssertObjectTrait
     /**
      * Asserts that a list of properties exist in cascade from an original object.
      *
-     * @param mixed $object The original object to check properties in cascade.
+     * @param object $object The original object to check properties in cascade.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @param string ...$properties The list of properties to check in cascade.
      * @return mixed The value of the last element to check.
      */
     protected static function assertPropertiesInCascade(
-        mixed $object,
+        object $object,
         callable $exception,
         string ...$properties
     ): mixed {
