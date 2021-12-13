@@ -18,6 +18,7 @@ trait AssertTrait
     use Categories\AssertBooleanTrait;
     use Categories\AssertComparisonTrait;
     use Categories\AssertCountableTrait;
+    use Categories\AssertEnumTrait;
     use Categories\AssertFileTrait;
     use Categories\AssertJsonTrait;
     use Categories\AssertObjectTrait;
