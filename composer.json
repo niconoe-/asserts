@@ -8,7 +8,7 @@
     {"name": "Nicolas Giraud", "email": "nicolas.giraud.dev@gmail.com", "role": "Main Developer"}
   ],
   "require": {
-    "php": ">=8.0.0"
+    "php": ">=8.1.0"
   },
   "require-dev": {
     "phpstan/extension-installer": "^1.1",
@@ -17,7 +17,7 @@
     "phpstan/phpstan-phpunit": "^1.0",
     "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest",
-    "vimeo/psalm": "^4.12"
+    "vimeo/psalm": "^4.15"
   },
   "autoload": {"psr-4": {"Nicodev\\Asserts\\": "src/Asserts"}},
   "autoload-dev": {"psr-4": {"Nicodev\\Tests\\": "src/Tests"}}
