@@ -10,14 +10,13 @@ use Throwable;
  * Trait AssertEnumTrait
  *
  * List of assertions associated to enum feature.
- *
- * @template T of BackedEnum
  */
 trait AssertEnumTrait
 {
     /**
      * Asserts that the last JSON error is NONE.
      *
+     * @template T of BackedEnum
      * @param class-string<T> $enumName Name of the backed enum on which to try to get the value from.
      * @param int|string $backedValue The value associated to the backedEnum, if exists.
      * @param callable(): Throwable $exception The exception to throw if value is not in the list of backed enum values.
