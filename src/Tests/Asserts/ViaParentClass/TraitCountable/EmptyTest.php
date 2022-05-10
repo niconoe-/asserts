@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class EmptyTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class EmptyTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertEmpty([], fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertEmpty([], $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class EmptyTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertEmpty(['Not empty :('], fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertEmpty(['Not empty :('], $this->error);
             }
         };
     }

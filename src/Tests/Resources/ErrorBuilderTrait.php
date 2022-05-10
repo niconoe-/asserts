@@ -4,13 +4,10 @@ namespace Nicodev\Tests\Resources;
 
 use Closure;
 use Exception;
-use Nicodev\Asserts\AssertTrait;
 
-abstract class ParentClass
+trait ErrorBuilderTrait
 {
-    use AssertTrait;
-
-    protected readonly Closure $error;
+    private readonly Closure $error;
 
     public function __construct()
     {

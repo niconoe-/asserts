@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitArray;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class KeyExistsTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -27,7 +29,7 @@ final class KeyExistsTest extends TestCase
             public function runOk(): string
             {
                 $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
-                return self::assertKeyExists($provider, 'fr_FR', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertKeyExists($provider, 'fr_FR', $this->error);
             }
 
             /**
@@ -37,7 +39,7 @@ final class KeyExistsTest extends TestCase
             public function runKo(): string
             {
                 $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
-                return self::assertKeyExists($provider, 'en_UK', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertKeyExists($provider, 'en_UK', $this->error);
             }
         };
     }

@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitType;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsNotStringTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -26,7 +28,7 @@ final class IsNotStringTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotString(true, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotString(true, $this->error);
             }
 
             /**
@@ -35,7 +37,7 @@ final class IsNotStringTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNotString('Bye world!', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotString('Bye world!', $this->error);
             }
         };
     }

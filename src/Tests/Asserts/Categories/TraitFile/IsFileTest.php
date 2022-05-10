@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitFile;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsFileTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -26,7 +28,7 @@ final class IsFileTest extends TestCase
              */
             public function runOk(): string
             {
-                return self::assertIsFile(__DIR__ . '/data/directory/file', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsFile(__DIR__ . '/data/directory/file', $this->error);
             }
 
             /**
@@ -35,7 +37,7 @@ final class IsFileTest extends TestCase
              */
             public function runKo(): string
             {
-                return self::assertIsFile(__DIR__ . '/data/directory', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsFile(__DIR__ . '/data/directory', $this->error);
             }
         };
     }

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class PropertiesInCascadeTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ final class PropertiesInCascadeTest extends TestCase
             public function runOk(): mixed
             {
                 $a = (object)['b' => (object)['c' => (object)['d' => 'bar']]];
-                return self::assertPropertiesInCascade($a, fn(): Exception => new Exception('This assertion fails.'), 'b', 'c', 'd');
+                return self::assertPropertiesInCascade($a, $this->error, 'b', 'c', 'd');
             }
 
             /**
@@ -35,7 +35,7 @@ final class PropertiesInCascadeTest extends TestCase
             public function runKo(): mixed
             {
                 $a = (object)['b' => (object)['c' => (object)['d' => 'baz']]];
-                return self::assertPropertiesInCascade($a, fn(): Exception => new Exception('This assertion fails.'), 'b', 'x', 'z');
+                return self::assertPropertiesInCascade($a, $this->error, 'b', 'x', 'z');
             }
         };
     }

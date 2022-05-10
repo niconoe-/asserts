@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitCountable;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class CountTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -27,7 +29,7 @@ final class CountTest extends TestCase
             public function runOk(): bool
             {
                 $provider = [1, 2, 3, 4, 5];
-                return self::assertCount($provider, 5, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertCount($provider, 5, $this->error);
             }
 
             /**
@@ -37,7 +39,7 @@ final class CountTest extends TestCase
             public function runKo(): bool
             {
                 $provider = [1, 2, 3, 4, 5];
-                return self::assertCount($provider, 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertCount($provider, 1, $this->error);
             }
         };
     }

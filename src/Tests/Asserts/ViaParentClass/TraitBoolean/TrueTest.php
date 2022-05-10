@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class TrueTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class TrueTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertTrue(true, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertTrue(true, $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class TrueTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertTrue(1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertTrue(1, $this->error);
             }
         };
     }

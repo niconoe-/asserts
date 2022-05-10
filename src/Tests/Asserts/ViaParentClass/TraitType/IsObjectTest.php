@@ -13,7 +13,7 @@ use stdClass;
  */
 final class IsObjectTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ final class IsObjectTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsObject(new stdClass(), fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsObject(new stdClass(), $this->error);
             }
 
             /**
@@ -34,7 +34,7 @@ final class IsObjectTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsObject(false, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsObject(false, $this->error);
             }
         };
     }

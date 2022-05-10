@@ -102,15 +102,14 @@ trait AssertComparisonTrait
 
     /**
      * Asserts that the given actual value is between a lower and higher bound, included.
-     * Works with integers, floats and strings.
      *
      * @param mixed $actual The actual value to test.
-     * @param int|float|string $min The lower bound.
-     * @param int|float|string $max The higher bound.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param mixed $min The lower bound.
+     * @param mixed $max The higher bound.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertBetweenOrEquals($actual, $min, $max, Throwable $exception): bool
+    protected static function assertBetweenOrEquals(mixed $actual, mixed $min, mixed $max, callable $exception): bool
     {
         static::makeAssertion($min <= $actual && $max >= $actual, $exception);
         return true;
@@ -119,15 +118,14 @@ trait AssertComparisonTrait
 
     /**
      * Asserts that the given actual value is between a lower and higher bound, excluded.
-     * Works with integers, floats and strings.
      *
      * @param mixed $actual The actual value to test.
-     * @param int|float|string $min The lower bound.
-     * @param int|float|string $max The higher bound.
-     * @param Throwable $exception The exception to throw if the assertion fails.
+     * @param mixed $min The lower bound.
+     * @param mixed $max The higher bound.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return bool
      */
-    public static function assertBetween($actual, $min, $max, Throwable $exception): bool
+    protected static function assertBetween(mixed $actual, mixed $min, mixed $max, callable $exception): bool
     {
         static::makeAssertion($min < $actual && $max > $actual, $exception);
         return true;

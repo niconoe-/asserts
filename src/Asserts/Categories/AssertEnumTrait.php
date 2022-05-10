@@ -14,7 +14,7 @@ use Throwable;
 trait AssertEnumTrait
 {
     /**
-     * Asserts that the last JSON error is NONE.
+     * Asserts that a value from a given Enum exists, and returns the Enum object if exists.
      *
      * @template T of BackedEnum
      * @param class-string<T> $enumName Name of the backed enum on which to try to get the value from.

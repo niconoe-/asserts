@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitType;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsNotArrayTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -26,7 +28,7 @@ final class IsNotArrayTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotArray('[]', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotArray('[]', $this->error);
             }
 
             /**
@@ -35,7 +37,7 @@ final class IsNotArrayTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNotArray(['Am I an array?' => true], fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotArray(['Am I an array?' => true], $this->error);
             }
         };
     }

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class NotCountRecursiveTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ final class NotCountRecursiveTest extends TestCase
             public function runOk(): bool
             {
                 $provider = [[1], [2], [3], [4], [5]];
-                return self::assertNotCountRecursive($provider, 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotCountRecursive($provider, 1, $this->error);
             }
 
             /**
@@ -35,7 +35,7 @@ final class NotCountRecursiveTest extends TestCase
             public function runKo(): bool
             {
                 $provider = [[1], [2], [3], [4], [5]];
-                return self::assertNotCountRecursive($provider, 10, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotCountRecursive($provider, 10, $this->error);
             }
         };
     }

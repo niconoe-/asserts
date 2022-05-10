@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class NotEqualsTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class NotEqualsTest extends TestCase
              */
             public function runOk(): mixed
             {
-                return self::assertNotEquals('1', 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotEquals('1', 1, $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class NotEqualsTest extends TestCase
              */
             public function runKo(): mixed
             {
-                return self::assertNotEquals('1', '1', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotEquals('1', '1', $this->error);
             }
         };
     }

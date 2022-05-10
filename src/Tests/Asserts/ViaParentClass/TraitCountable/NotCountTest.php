@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class NotCountTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ final class NotCountTest extends TestCase
             public function runOk(): bool
             {
                 $provider = [1, 2, 3, 4, 5];
-                return self::assertNotCount($provider, 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotCount($provider, 1, $this->error);
             }
 
             /**
@@ -35,7 +35,7 @@ final class NotCountTest extends TestCase
             public function runKo(): bool
             {
                 $provider = [1, 2, 3, 4, 5];
-                return self::assertNotCount($provider, 5, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotCount($provider, 5, $this->error);
             }
         };
     }

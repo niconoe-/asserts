@@ -1,37 +1,26 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitComparison;
+namespace Nicodev\Tests\Asserts\Categories\TraitComparison;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Final class BetweenOrEqualsTest
- *
- * @category Tests
- * @package Nicodev\Tests\Asserts
- * @subpackage TraitComparison
- *
- * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2019 Nicolas Giraud
- * @license MIT
  */
 final class BetweenOrEqualsTest extends TestCase
 {
-    /**
-     * @var object anonymous class
-     * @method runOk
-     * @method runKo
-     */
-    private $testClass;
+    private readonly object $testClass;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -39,7 +28,7 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertBetweenOrEquals(1, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(1, 0, 2, $this->error);
             }
 
             /**
@@ -48,7 +37,7 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runOkAsLower(): bool
             {
-                return static::assertBetweenOrEquals(0, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(0, 0, 2, $this->error);
             }
 
             /**
@@ -57,7 +46,7 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runOkAsHigher(): bool
             {
-                return static::assertBetweenOrEquals(2, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(2, 0, 2, $this->error);
             }
 
             /**
@@ -66,16 +55,16 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertBetweenOrEquals(3, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(3, 0, 2, $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        static::assertTrue($this->testClass->runOk());
-        static::assertTrue($this->testClass->runOkAsLower());
-        static::assertTrue($this->testClass->runOkAsHigher());
+        self::assertTrue($this->testClass->runOk());
+        self::assertTrue($this->testClass->runOkAsLower());
+        self::assertTrue($this->testClass->runOkAsHigher());
     }
 
     public function testMakeAssertionKO(): void

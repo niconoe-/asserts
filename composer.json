@@ -12,13 +12,19 @@
   },
   "require-dev": {
     "phpstan/extension-installer": "^1.1",
-    "phpstan/phpstan": "^1.1",
-    "phpstan/phpstan-strict-rules": "^1.0",
-    "phpstan/phpstan-phpunit": "^1.0",
+    "phpstan/phpstan": "^1.6",
+    "phpstan/phpstan-phpunit": "^1.1",
+    "phpstan/phpstan-strict-rules": "^1.2",
     "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest",
-    "vimeo/psalm": "^4.15"
+    "vimeo/psalm": "^4.23"
   },
   "autoload": {"psr-4": {"Nicodev\\Asserts\\": "src/Asserts"}},
-  "autoload-dev": {"psr-4": {"Nicodev\\Tests\\": "src/Tests"}}
+  "autoload-dev": {"psr-4": {"Nicodev\\Tests\\": "src/Tests"}},
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "phpstan/extension-installer": true
+    }
+  }
 }

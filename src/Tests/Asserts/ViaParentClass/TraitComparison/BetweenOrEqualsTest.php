@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\Categories\TraitComparison;
+namespace Nicodev\Tests\Asserts\ViaParentClass\TraitComparison;
 
 use Exception;
-use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,21 +12,19 @@ use PHPUnit\Framework\TestCase;
  */
 final class BetweenOrEqualsTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
-        $this->testClass = new class()
+        $this->testClass = new class() extends ParentClass
         {
-            use AssertTrait;
-
             /**
              * Run the assertion is ok for test.
              * @return bool
              */
             public function runOk(): bool
             {
-                return self::assertBetweenOrEquals(1, 0, 2, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(1, 0, 2, $this->error);
             }
 
             /**
@@ -35,7 +33,7 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runOkAsLower(): bool
             {
-                return self::assertBetweenOrEquals(0, 0, 2, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(0, 0, 2, $this->error);
             }
 
             /**
@@ -44,7 +42,7 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runOkAsHigher(): bool
             {
-                return self::assertBetweenOrEquals(2, 0, 2, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(2, 0, 2, $this->error);
             }
 
             /**
@@ -53,7 +51,7 @@ final class BetweenOrEqualsTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertBetweenOrEquals(3, 0, 2, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertBetweenOrEquals(3, 0, 2, $this->error);
             }
         };
     }

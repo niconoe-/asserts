@@ -14,7 +14,7 @@ use function fopen;
  */
 final class IsNotResourceTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -29,6 +29,7 @@ final class IsNotResourceTest extends TestCase
             public function __construct()
             {
                 $this->resource = fopen('php://memory', 'rb');
+                parent::__construct();
             }
 
             /**
@@ -45,7 +46,7 @@ final class IsNotResourceTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotResource(true, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotResource(true, $this->error);
             }
 
             /**
@@ -54,7 +55,7 @@ final class IsNotResourceTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNotResource($this->resource, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotResource($this->resource, $this->error);
             }
         };
     }

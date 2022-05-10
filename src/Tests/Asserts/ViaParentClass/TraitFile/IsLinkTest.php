@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsLinkTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class IsLinkTest extends TestCase
              */
             public function runOk(): string
             {
-                return self::assertIsLink(__DIR__ . '/data/directory/link', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsLink(__DIR__ . '/data/directory/link', $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class IsLinkTest extends TestCase
              */
             public function runKo(): string
             {
-                return self::assertIsLink(__DIR__ . '/data/directory/file', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsLink(__DIR__ . '/data/directory/file', $this->error);
             }
         };
     }

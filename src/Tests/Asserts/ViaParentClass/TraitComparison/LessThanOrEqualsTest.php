@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class LessThanOrEqualsTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class LessThanOrEqualsTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertLessThanOrEquals(1, 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertLessThanOrEquals(1, 1, $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class LessThanOrEqualsTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertLessThanOrEquals(100, 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertLessThanOrEquals(100, 1, $this->error);
             }
         };
     }

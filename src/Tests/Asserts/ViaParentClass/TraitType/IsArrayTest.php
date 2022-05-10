@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsArrayTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class IsArrayTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsArray([], fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsArray([], $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class IsArrayTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsArray('[]', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsArray('[]', $this->error);
             }
         };
     }

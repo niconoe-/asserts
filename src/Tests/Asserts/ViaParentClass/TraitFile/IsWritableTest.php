@@ -13,7 +13,7 @@ use function chmod;
  */
 final class IsWritableTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -27,7 +27,7 @@ final class IsWritableTest extends TestCase
             {
                 $path = __DIR__ . '/data/directory/writable';
                 chmod($path, 0222);
-                return self::assertIsWritable($path, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsWritable($path, $this->error);
             }
 
             /**
@@ -38,7 +38,7 @@ final class IsWritableTest extends TestCase
             {
                 $path = __DIR__ . '/data/directory/readable';
                 chmod($path, 0444);
-                return self::assertIsWritable($path, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsWritable($path, $this->error);
             }
         };
     }

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class KeyExistsTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ final class KeyExistsTest extends TestCase
             public function runOk(): string
             {
                 $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
-                return self::assertKeyExists($provider, 'fr_FR', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertKeyExists($provider, 'fr_FR', $this->error);
             }
 
             /**
@@ -35,7 +35,7 @@ final class KeyExistsTest extends TestCase
             public function runKo(): string
             {
                 $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
-                return self::assertKeyExists($provider, 'en_UK', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertKeyExists($provider, 'en_UK', $this->error);
             }
         };
     }

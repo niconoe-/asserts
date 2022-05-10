@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitType;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsFloatTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -26,7 +28,7 @@ final class IsFloatTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsFloat(5.555, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsFloat(5.555, $this->error);
             }
 
             /**
@@ -35,7 +37,7 @@ final class IsFloatTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsFloat(5, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsFloat(5, $this->error);
             }
         };
     }

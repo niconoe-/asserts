@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitBoolean;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class TrueTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -26,7 +28,7 @@ final class TrueTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertTrue(true, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertTrue(true, $this->error);
             }
 
             /**
@@ -35,7 +37,7 @@ final class TrueTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertTrue(1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertTrue(1, $this->error);
             }
         };
     }

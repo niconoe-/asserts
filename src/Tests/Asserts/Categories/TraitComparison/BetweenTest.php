@@ -1,37 +1,26 @@
 <?php
 declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\TraitComparison;
+namespace Nicodev\Tests\Asserts\Categories\TraitComparison;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Final class BetweenTest
- *
- * @category Tests
- * @package Nicodev\Tests\Asserts
- * @subpackage TraitComparison
- *
- * @author Nicolas Giraud <nicolas.giraud.dev@gmail.com>
- * @copyright (c) 2019 Nicolas Giraud
- * @license MIT
  */
 final class BetweenTest extends TestCase
 {
-    /**
-     * @var object anonymous class
-     * @method runOk
-     * @method runKo
-     */
-    private $testClass;
+    private readonly object $testClass;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -39,7 +28,7 @@ final class BetweenTest extends TestCase
              */
             public function runOk(): bool
             {
-                return static::assertBetween(1, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetween(1, 0, 2, $this->error);
             }
 
             /**
@@ -48,7 +37,7 @@ final class BetweenTest extends TestCase
              */
             public function runKoAsLower(): bool
             {
-                return static::assertBetween(0, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetween(0, 0, 2, $this->error);
             }
 
             /**
@@ -57,7 +46,7 @@ final class BetweenTest extends TestCase
              */
             public function runKoAsHigher(): bool
             {
-                return static::assertBetween(2, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetween(2, 0, 2, $this->error);
             }
 
             /**
@@ -66,14 +55,14 @@ final class BetweenTest extends TestCase
              */
             public function runKo(): bool
             {
-                return static::assertBetween(3, 0, 2, new Exception('This assertion fails.'));
+                return self::assertBetween(3, 0, 2, $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        static::assertTrue($this->testClass->runOk());
+        self::assertTrue($this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void
