@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitJson;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 use function json_decode;
 
@@ -13,13 +14,14 @@ use function json_decode;
  */
 final class JsonErrorNoneTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -29,7 +31,7 @@ final class JsonErrorNoneTest extends TestCase
             {
                 /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
                 json_decode('{}', false);
-                return self::assertJsonErrorNone(fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertJsonErrorNone($this->error);
             }
 
             /**
@@ -40,7 +42,7 @@ final class JsonErrorNoneTest extends TestCase
             {
                 /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
                 json_decode('{"', false);
-                return self::assertJsonErrorNone(fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertJsonErrorNone($this->error);
             }
         };
     }

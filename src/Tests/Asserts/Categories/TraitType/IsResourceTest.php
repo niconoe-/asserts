@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nicodev\Tests\Asserts\Categories\TraitType;
 
+use Closure;
 use Exception;
 use Nicodev\Asserts\AssertTrait;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +15,7 @@ use function fopen;
  */
 final class IsResourceTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,6 +25,7 @@ final class IsResourceTest extends TestCase
 
             /** @var resource Use for tests. */
             private $resource;
+            private readonly Closure $error;
 
             /**
              * Init the curl resource for tests.
@@ -31,6 +33,7 @@ final class IsResourceTest extends TestCase
             public function __construct()
             {
                 $this->resource = fopen('php://memory', 'rb');
+                $this->error = static fn(): Exception => new Exception('This assertion fails.');
             }
 
             /**
@@ -47,7 +50,7 @@ final class IsResourceTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsResource($this->resource, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsResource($this->resource, $this->error);
             }
 
             /**
@@ -56,7 +59,7 @@ final class IsResourceTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsResource(false, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsResource(false, $this->error);
             }
         };
     }

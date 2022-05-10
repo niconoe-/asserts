@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitObject;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -13,13 +14,14 @@ use stdClass;
  */
 final class ObjectIsATest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -27,7 +29,7 @@ final class ObjectIsATest extends TestCase
              */
             public function runOk(): mixed
             {
-                return self::assertObjectIsA(new stdClass(), stdClass::class, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertObjectIsA(new stdClass(), stdClass::class, $this->error);
             }
 
             /**
@@ -36,7 +38,7 @@ final class ObjectIsATest extends TestCase
              */
             public function runKo(): mixed
             {
-                return self::assertObjectIsA($this, stdClass::class, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertObjectIsA($this, stdClass::class, $this->error);
             }
         };
     }

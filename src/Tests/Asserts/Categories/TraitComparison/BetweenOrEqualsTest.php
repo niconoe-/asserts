@@ -1,7 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
-namespace Nicodev\Tests\Asserts\Categories\TraitType;
+namespace Nicodev\Tests\Asserts\Categories\TraitComparison;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
@@ -9,9 +9,9 @@ use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNullTest
+ * Final class BetweenOrEqualsTest
  */
-final class IsNullTest extends TestCase
+final class BetweenOrEqualsTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -28,7 +28,25 @@ final class IsNullTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNull(null, $this->error);
+                return self::assertBetweenOrEquals(1, 0, 2, $this->error);
+            }
+
+            /**
+             * Run the assertion is ok same as min for test.
+             * @return bool
+             */
+            public function runOkAsLower(): bool
+            {
+                return self::assertBetweenOrEquals(0, 0, 2, $this->error);
+            }
+
+            /**
+             * Run the assertion is ok same as max for test.
+             * @return bool
+             */
+            public function runOkAsHigher(): bool
+            {
+                return self::assertBetweenOrEquals(2, 0, 2, $this->error);
             }
 
             /**
@@ -37,7 +55,7 @@ final class IsNullTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNull(false, $this->error);
+                return self::assertBetweenOrEquals(3, 0, 2, $this->error);
             }
         };
     }
@@ -45,6 +63,8 @@ final class IsNullTest extends TestCase
     public function testMakeAssertionOK(): void
     {
         self::assertTrue($this->testClass->runOk());
+        self::assertTrue($this->testClass->runOkAsLower());
+        self::assertTrue($this->testClass->runOkAsHigher());
     }
 
     public function testMakeAssertionKO(): void

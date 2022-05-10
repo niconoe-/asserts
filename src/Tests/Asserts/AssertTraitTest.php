@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nicodev\Tests\Asserts;
 
+use Closure;
 use Exception;
 use Nicodev\Asserts\AssertTrait;
 use Nicodev\Tests\Resources\ParentClass;
@@ -13,8 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class AssertTraitTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
-    private /*readonly*/ object $testParentClass;
+    private readonly object $testClass;
+    private readonly object $testParentClass;
 
     protected function setUp(): void
     {
@@ -22,12 +23,19 @@ final class AssertTraitTest extends TestCase
         {
             use AssertTrait;
 
+            private readonly Closure $error;
+
+            public function __construct()
+            {
+                $this->error = static fn(): Exception => new Exception('This assertion fails.');
+            }
+
             /**
              * Run the assertion is ok for test.
              */
             public function runOk(): void
             {
-                self::makeAssertion(true, fn(): Exception => new Exception('This assertion fails.'));
+                self::makeAssertion(true, $this->error);
             }
 
             /**
@@ -35,7 +43,7 @@ final class AssertTraitTest extends TestCase
              */
             public function runKo(): void
             {
-                self::makeAssertion(false, fn(): Exception => new Exception('This assertion fails.'));
+                self::makeAssertion(false, $this->error);
             }
         };
 
@@ -46,7 +54,7 @@ final class AssertTraitTest extends TestCase
              */
             public function runOk(): void
             {
-                self::makeAssertion(true, fn(): Exception => new Exception('This assertion fails.'));
+                self::makeAssertion(true, $this->error);
             }
 
             /**
@@ -54,7 +62,7 @@ final class AssertTraitTest extends TestCase
              */
             public function runKo(): void
             {
-                self::makeAssertion(false, fn(): Exception => new Exception('This assertion fails.'));
+                self::makeAssertion(false, $this->error);
             }
         };
     }

@@ -7,6 +7,7 @@ use BackedEnum;
 use Exception;
 use Generator;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use Nicodev\Tests\Resources\IntBackedEnum;
 use Nicodev\Tests\Resources\StringBackedEnum;
 use PHPUnit\Framework\TestCase;
@@ -25,6 +26,7 @@ final class EnumHasTest extends TestCase
         $testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -33,7 +35,7 @@ final class EnumHasTest extends TestCase
             public function runOk(): BackedEnum
             {
                 $enumClass = IntBackedEnum::class;
-                return self::assertEnumHas($enumClass, 1, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertEnumHas($enumClass, 1, $this->error);
             }
 
             /**
@@ -43,7 +45,7 @@ final class EnumHasTest extends TestCase
             public function runKo(): BackedEnum
             {
                 $enumClass = IntBackedEnum::class;
-                return self::assertEnumHas($enumClass, 999, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertEnumHas($enumClass, 999, $this->error);
             }
         };
         yield 'IntEnum' => [$testClass, IntBackedEnum::A];
@@ -52,6 +54,7 @@ final class EnumHasTest extends TestCase
         $testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -60,7 +63,7 @@ final class EnumHasTest extends TestCase
             public function runOk(): BackedEnum
             {
                 $enumClass = StringBackedEnum::class;
-                return self::assertEnumHas($enumClass, 'A', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertEnumHas($enumClass, 'A', $this->error);
             }
 
             /**
@@ -70,7 +73,7 @@ final class EnumHasTest extends TestCase
             public function runKo(): BackedEnum
             {
                 $enumClass = StringBackedEnum::class;
-                return self::assertEnumHas($enumClass, 'Z', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertEnumHas($enumClass, 'Z', $this->error);
             }
         };
         yield 'StringEnum' => [$testClass, StringBackedEnum::A];

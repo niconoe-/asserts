@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsNotCallableTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class IsNotCallableTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotCallable(true, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotCallable(true, $this->error);
             }
 
             /**
@@ -36,7 +36,7 @@ final class IsNotCallableTest extends TestCase
                 $callback = function () {
                     return false;
                 };
-                return self::assertIsNotCallable($callback, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotCallable($callback, $this->error);
             }
         };
     }

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsNotBoolTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class IsNotBoolTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotBool('true', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotBool('true', $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class IsNotBoolTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNotBool(false, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotBool(false, $this->error);
             }
         };
     }

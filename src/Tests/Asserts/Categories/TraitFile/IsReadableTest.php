@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitFile;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 use function chmod;
 
@@ -13,13 +14,14 @@ use function chmod;
  */
 final class IsReadableTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -29,7 +31,7 @@ final class IsReadableTest extends TestCase
             {
                 $path = __DIR__ . '/data/directory/readable';
                 chmod($path, 0444);
-                return self::assertIsReadable($path, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsReadable($path, $this->error);
             }
 
             /**
@@ -40,7 +42,7 @@ final class IsReadableTest extends TestCase
             {
                 $path = __DIR__ . '/data/directory/executable';
                 chmod($path, 0111);
-                return self::assertIsReadable($path, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsReadable($path, $this->error);
             }
         };
     }

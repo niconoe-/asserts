@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitCountable;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class NotEmptyTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -26,7 +28,7 @@ final class NotEmptyTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertNotEmpty(['Not empty :)'], fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotEmpty(['Not empty :)'], $this->error);
             }
 
             /**
@@ -35,7 +37,7 @@ final class NotEmptyTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertNotEmpty([], fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertNotEmpty([], $this->error);
             }
         };
     }

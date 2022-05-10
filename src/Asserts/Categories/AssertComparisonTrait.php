@@ -99,4 +99,35 @@ trait AssertComparisonTrait
         self::makeAssertion($actual < $expected, $exception);
         return true;
     }
+
+    /**
+     * Asserts that the given actual value is between a lower and higher bound, included.
+     *
+     * @param mixed $actual The actual value to test.
+     * @param mixed $min The lower bound.
+     * @param mixed $max The higher bound.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return bool
+     */
+    protected static function assertBetweenOrEquals(mixed $actual, mixed $min, mixed $max, callable $exception): bool
+    {
+        static::makeAssertion($min <= $actual && $max >= $actual, $exception);
+        return true;
+    }
+
+
+    /**
+     * Asserts that the given actual value is between a lower and higher bound, excluded.
+     *
+     * @param mixed $actual The actual value to test.
+     * @param mixed $min The lower bound.
+     * @param mixed $max The higher bound.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return bool
+     */
+    protected static function assertBetween(mixed $actual, mixed $min, mixed $max, callable $exception): bool
+    {
+        static::makeAssertion($min < $actual && $max > $actual, $exception);
+        return true;
+    }
 }

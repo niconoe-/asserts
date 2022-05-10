@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsNotTypeOfTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class IsNotTypeOfTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotTypeOf(['string'], true, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotTypeOf(['string'], true, $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class IsNotTypeOfTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNotTypeOf(['string'], 'Yes string', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotTypeOf(['string'], 'Yes string', $this->error);
             }
         };
     }

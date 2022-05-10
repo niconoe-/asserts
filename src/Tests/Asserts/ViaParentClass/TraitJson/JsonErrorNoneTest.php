@@ -13,7 +13,7 @@ use function json_decode;
  */
 final class JsonErrorNoneTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -27,7 +27,7 @@ final class JsonErrorNoneTest extends TestCase
             {
                 /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
                 json_decode('{}', false);
-                return self::assertJsonErrorNone(fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertJsonErrorNone($this->error);
             }
 
             /**
@@ -38,7 +38,7 @@ final class JsonErrorNoneTest extends TestCase
             {
                 /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
                 json_decode('{"', false);
-                return self::assertJsonErrorNone(fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertJsonErrorNone($this->error);
             }
         };
     }

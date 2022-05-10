@@ -5,6 +5,7 @@ namespace Nicodev\Tests\Asserts\Categories\TraitArray;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
+use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,13 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 final class InArrayTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
         $this->testClass = new class()
         {
             use AssertTrait;
+            use ErrorBuilderTrait;
 
             /**
              * Run the assertion is ok for test.
@@ -27,7 +29,7 @@ final class InArrayTest extends TestCase
             public function runOk(): bool
             {
                 $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
-                return self::assertInArray($provider, 3, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertInArray($provider, 3, $this->error);
             }
 
             /**
@@ -37,7 +39,7 @@ final class InArrayTest extends TestCase
             public function runKo(): bool
             {
                 $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
-                return self::assertInArray($provider, '3', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertInArray($provider, '3', $this->error);
             }
         };
     }

@@ -13,7 +13,7 @@ use function chmod;
  */
 final class IsExecutableTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -27,7 +27,7 @@ final class IsExecutableTest extends TestCase
             {
                 $path = __DIR__ . '/data/directory/executable';
                 chmod($path, 0111);
-                return self::assertIsExecutable($path, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsExecutable($path, $this->error);
             }
 
             /**
@@ -38,7 +38,7 @@ final class IsExecutableTest extends TestCase
             {
                 $path = __DIR__ . '/data/directory/writable';
                 chmod($path, 0222);
-                return self::assertIsExecutable($path, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsExecutable($path, $this->error);
             }
         };
     }

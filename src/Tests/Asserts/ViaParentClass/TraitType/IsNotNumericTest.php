@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsNotNumericTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ final class IsNotNumericTest extends TestCase
              */
             public function runOk(): bool
             {
-                return self::assertIsNotNumeric('a b c d', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotNumeric('a b c d', $this->error);
             }
 
             /**
@@ -33,7 +33,7 @@ final class IsNotNumericTest extends TestCase
              */
             public function runKo(): bool
             {
-                return self::assertIsNotNumeric('1e10', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsNotNumeric('1e10', $this->error);
             }
         };
     }

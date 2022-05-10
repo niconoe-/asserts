@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class IsTypeOfTest extends TestCase
 {
-    private /*readonly*/ object $testClass;
+    private readonly object $testClass;
 
     protected function setUp(): void
     {
@@ -25,7 +25,7 @@ final class IsTypeOfTest extends TestCase
             public function runOk(): bool
             {
                 $typesAllowed = ['array', 'object', 'integer', 'float'];
-                return self::assertIsTypeOf($typesAllowed, 5, fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsTypeOf($typesAllowed, 5, $this->error);
             }
 
             /**
@@ -35,7 +35,7 @@ final class IsTypeOfTest extends TestCase
             public function runKo(): bool
             {
                 $typesAllowed = ['array', 'object', 'integer', 'float'];
-                return self::assertIsTypeOf($typesAllowed, 'No string', fn(): Exception => new Exception('This assertion fails.'));
+                return self::assertIsTypeOf($typesAllowed, 'No string', $this->error);
             }
         };
     }
