@@ -8,16 +8,17 @@
     {"name": "Nicolas Giraud", "email": "nicolas.giraud.dev@gmail.com", "role": "Main Developer"}
   ],
   "require": {
-    "php": ">=8.1.0"
+    "php": ">=8.1.0",
+    "symfony/polyfill-php83": "*"
   },
   "require-dev": {
-    "phpstan/extension-installer": "^1.1",
-    "phpstan/phpstan": "^1.6",
-    "phpstan/phpstan-phpunit": "^1.1",
-    "phpstan/phpstan-strict-rules": "^1.2",
-    "phpunit/phpunit": "^9.5",
+    "phpstan/extension-installer": "^1.3",
+    "phpstan/phpstan": "^1.10",
+    "phpstan/phpstan-phpunit": "^1.3",
+    "phpstan/phpstan-strict-rules": "^1.5",
+    "phpunit/phpunit": "^10.4",
     "roave/security-advisories": "dev-latest",
-    "vimeo/psalm": "^4.23"
+    "vimeo/psalm": "^5.16"
   },
   "autoload": {"psr-4": {"Nicodev\\Asserts\\": "src/Asserts"}},
   "autoload-dev": {"psr-4": {"Nicodev\\Tests\\": "src/Tests"}},
