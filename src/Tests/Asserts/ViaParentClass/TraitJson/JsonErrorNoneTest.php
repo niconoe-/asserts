@@ -6,6 +6,7 @@ namespace Nicodev\Tests\Asserts\ViaParentClass\TraitJson;
 use Exception;
 use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
+
 use function json_decode;
 
 /**
@@ -21,9 +22,9 @@ final class JsonErrorNoneTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return true
              */
-            public function runOk(): bool
+            public function runOk(): true
             {
                 /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
                 json_decode('{}', false);
@@ -32,9 +33,9 @@ final class JsonErrorNoneTest extends TestCase
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return true
              */
-            public function runKo(): bool
+            public function runKo(): true
             {
                 /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
                 json_decode('{"', false);

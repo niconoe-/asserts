@@ -20,18 +20,18 @@ final class EmptyTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return array{}
              */
-            public function runOk(): bool
+            public function runOk(): array
             {
                 return self::assertEmpty([], $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return array{}
              */
-            public function runKo(): bool
+            public function runKo(): array
             {
                 return self::assertEmpty(['Not empty :('], $this->error);
             }
@@ -40,7 +40,7 @@ final class EmptyTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame([], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

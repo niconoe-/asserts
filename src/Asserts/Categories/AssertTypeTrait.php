@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nicodev\Asserts\Categories;
 
 use Throwable;
+
 use function gettype;
 use function in_array;
 use function is_array;
@@ -31,7 +32,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNull(mixed $variable, callable $exception): bool
+    protected static function assertIsNull(mixed $variable, callable $exception): true
     {
         self::makeAssertion(null === $variable, $exception);
         return true;
@@ -44,7 +45,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsResource(mixed $variable, callable $exception): bool
+    protected static function assertIsResource(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_resource($variable), $exception);
         return true;
@@ -57,7 +58,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNumeric(mixed $variable, callable $exception): bool
+    protected static function assertIsNumeric(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_numeric($variable), $exception);
         return true;
@@ -70,7 +71,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsObject(mixed $variable, callable $exception): bool
+    protected static function assertIsObject(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_object($variable), $exception);
         return true;
@@ -83,7 +84,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsCallable(mixed $variable, callable $exception): bool
+    protected static function assertIsCallable(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_callable($variable), $exception);
         return true;
@@ -96,7 +97,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsFloat(mixed $variable, callable $exception): bool
+    protected static function assertIsFloat(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_float($variable), $exception);
         return true;
@@ -109,7 +110,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsInt(mixed $variable, callable $exception): bool
+    protected static function assertIsInt(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_int($variable), $exception);
         return true;
@@ -122,7 +123,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNumber(mixed $variable, callable $exception): bool
+    protected static function assertIsNumber(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_int($variable) || is_float($variable), $exception);
         return true;
@@ -135,7 +136,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsString(mixed $variable, callable $exception): bool
+    protected static function assertIsString(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_string($variable), $exception);
         return true;
@@ -148,7 +149,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsBool(mixed $variable, callable $exception): bool
+    protected static function assertIsBool(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_bool($variable), $exception);
         return true;
@@ -161,7 +162,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsArray(mixed $variable, callable $exception): bool
+    protected static function assertIsArray(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_array($variable), $exception);
         return true;
@@ -174,7 +175,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsScalar(mixed $variable, callable $exception): bool
+    protected static function assertIsScalar(mixed $variable, callable $exception): true
     {
         self::makeAssertion(is_scalar($variable), $exception);
         return true;
@@ -188,7 +189,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsTypeOf(array $types, mixed $variable, callable $exception): bool
+    protected static function assertIsTypeOf(array $types, mixed $variable, callable $exception): true
     {
         self::makeAssertion(in_array(gettype($variable), $types, true), $exception);
         return true;
@@ -201,7 +202,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotNull(mixed $variable, callable $exception): bool
+    protected static function assertIsNotNull(mixed $variable, callable $exception): true
     {
         self::makeAssertion(null !== $variable, $exception);
         return true;
@@ -214,7 +215,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotResource(mixed $variable, callable $exception): bool
+    protected static function assertIsNotResource(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_resource($variable), $exception);
         return true;
@@ -227,7 +228,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotNumeric(mixed $variable, callable $exception): bool
+    protected static function assertIsNotNumeric(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_numeric($variable), $exception);
         return true;
@@ -240,7 +241,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotObject(mixed $variable, callable $exception): bool
+    protected static function assertIsNotObject(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_object($variable), $exception);
         return true;
@@ -253,7 +254,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotCallable(mixed $variable, callable $exception): bool
+    protected static function assertIsNotCallable(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_callable($variable), $exception);
         return true;
@@ -266,7 +267,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotFloat(mixed $variable, callable $exception): bool
+    protected static function assertIsNotFloat(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_float($variable), $exception);
         return true;
@@ -279,7 +280,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotInt(mixed $variable, callable $exception): bool
+    protected static function assertIsNotInt(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_int($variable), $exception);
         return true;
@@ -292,7 +293,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotNumber(mixed $variable, callable $exception): bool
+    protected static function assertIsNotNumber(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_int($variable) && !is_float($variable), $exception);
         return true;
@@ -305,7 +306,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotString(mixed $variable, callable $exception): bool
+    protected static function assertIsNotString(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_string($variable), $exception);
         return true;
@@ -318,7 +319,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotBool(mixed $variable, callable $exception): bool
+    protected static function assertIsNotBool(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_bool($variable), $exception);
         return true;
@@ -331,7 +332,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotArray(mixed $variable, callable $exception): bool
+    protected static function assertIsNotArray(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_array($variable), $exception);
         return true;
@@ -344,7 +345,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotScalar(mixed $variable, callable $exception): bool
+    protected static function assertIsNotScalar(mixed $variable, callable $exception): true
     {
         self::makeAssertion(!is_scalar($variable), $exception);
         return true;
@@ -358,7 +359,7 @@ trait AssertTypeTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertIsNotTypeOf(array $types, mixed $variable, callable $exception): bool
+    protected static function assertIsNotTypeOf(array $types, mixed $variable, callable $exception): true
     {
         self::makeAssertion(!in_array(gettype($variable), $types, true), $exception);
         return true;

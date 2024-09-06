@@ -24,18 +24,18 @@ final class FalseTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return false
              */
-            public function runOk(): bool
+            public function runOk(): false
             {
                 return self::assertFalse(false, $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return false
              */
-            public function runKo(): bool
+            public function runKo(): false
             {
                 return self::assertFalse(0, $this->error);
             }

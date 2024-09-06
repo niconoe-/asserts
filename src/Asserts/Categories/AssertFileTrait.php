@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nicodev\Asserts\Categories;
 
 use Throwable;
+
 use function is_dir;
 use function is_executable;
 use function is_file;
