@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nicodev\Asserts\Categories;
 
 use Throwable;
+
 use function array_map;
 use function is_a;
 use function property_exists;

@@ -24,18 +24,18 @@ final class IsNumericTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return true
              */
-            public function runOk(): bool
+            public function runOk(): true
             {
                 return self::assertIsNumeric('1e10', $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return true
              */
-            public function runKo(): bool
+            public function runKo(): true
             {
                 return self::assertIsNumeric('a b c d', $this->error);
             }

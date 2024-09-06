@@ -24,18 +24,18 @@ final class IsNotTypeOfTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return true
              */
-            public function runOk(): bool
+            public function runOk(): true
             {
                 return self::assertIsNotTypeOf(['string'], true, $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return true
              */
-            public function runKo(): bool
+            public function runKo(): true
             {
                 return self::assertIsNotTypeOf(['string'], 'Yes string', $this->error);
             }

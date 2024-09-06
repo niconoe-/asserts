@@ -10,6 +10,7 @@ use Nicodev\Asserts\AssertTrait;
 use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use Nicodev\Tests\Resources\IntBackedEnum;
 use Nicodev\Tests\Resources\StringBackedEnum;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,7 +21,7 @@ final class EnumHasTest extends TestCase
     /**
      * @return Generator
      */
-    private function provideEnum(): Generator
+    public static function provideEnum(): Generator
     {
         // Int Backed Enum.
         $testClass = new class()
@@ -80,11 +81,11 @@ final class EnumHasTest extends TestCase
     }
 
     /**
-     * @dataProvider provideEnum
      * @param object $testClass
      * @param BackedEnum $expectedEnum
      * @return void
      */
+    #[DataProvider('provideEnum')]
     public function testMakeAssertionOK(object $testClass, BackedEnum $expectedEnum): void
     {
         $enum = $testClass->runOk();
@@ -92,10 +93,10 @@ final class EnumHasTest extends TestCase
     }
 
     /**
-     * @dataProvider provideEnum
      * @param object $testClass
      * @return void
      */
+    #[DataProvider('provideEnum')]
     public function testMakeAssertionKO(object $testClass): void
     {
         $this->expectException(Exception::class);

@@ -6,6 +6,7 @@ namespace Nicodev\Tests\Asserts\ViaParentClass\TraitFile;
 use Exception;
 use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
+
 use function chmod;
 
 /**

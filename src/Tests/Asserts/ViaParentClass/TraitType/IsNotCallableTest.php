@@ -20,22 +20,20 @@ final class IsNotCallableTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return true
              */
-            public function runOk(): bool
+            public function runOk(): true
             {
                 return self::assertIsNotCallable(true, $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return true
              */
-            public function runKo(): bool
+            public function runKo(): true
             {
-                $callback = function () {
-                    return false;
-                };
+                $callback = static fn(): false => false;
                 return self::assertIsNotCallable($callback, $this->error);
             }
         };

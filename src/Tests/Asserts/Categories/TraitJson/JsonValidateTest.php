@@ -24,36 +24,36 @@ final class JsonValidateTest extends TestCase
 
             /**
              * Run the assertion is ok for test, but expects no return.
-             * @return mixed
+             * @return null
              */
-            public function runOkNoReturn(): mixed
+            public function runOkNoReturn(): null
             {
                 return self::assertJsonValidate('{"foo": "bar"}', $this->error);
             }
 
             /**
              * Run the assertion is ok for test, but expects associative array.
-             * @return mixed
+             * @return array<mixed>
              */
-            public function runOkAssoc(): mixed
+            public function runOkAssoc(): array
             {
-                return self::assertJsonValidate('{"foo": "bar"}', $this->error, 1);
+                return self::assertJsonValidate('{"foo": "bar"}', $this->error, self::ASSERT_JSON_RETURN_ARRAY);
             }
 
             /**
              * Run the assertion is ok for test, but expects object.
-             * @return mixed
+             * @return object
              */
-            public function runOkObject(): mixed
+            public function runOkObject(): object
             {
-                return self::assertJsonValidate('{"foo": "bar"}', $this->error, 2);
+                return self::assertJsonValidate('{"foo": "bar"}', $this->error, self::ASSERT_JSON_RETURN_OBJECT);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return null
              */
-            public function runKo(): bool
+            public function runKo(): null
             {
                 return self::assertJsonValidate('{"', $this->error);
             }

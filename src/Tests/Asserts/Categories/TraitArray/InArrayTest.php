@@ -24,9 +24,9 @@ final class InArrayTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return true
              */
-            public function runOk(): bool
+            public function runOk(): true
             {
                 $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
                 return self::assertInArray($provider, 3, $this->error);
@@ -34,9 +34,9 @@ final class InArrayTest extends TestCase
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return true
              */
-            public function runKo(): bool
+            public function runKo(): true
             {
                 $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
                 return self::assertInArray($provider, '3', $this->error);

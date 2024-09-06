@@ -20,9 +20,9 @@ final class NotCountTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return true
              */
-            public function runOk(): bool
+            public function runOk(): true
             {
                 $provider = [1, 2, 3, 4, 5];
                 return self::assertNotCount($provider, 1, $this->error);
@@ -30,9 +30,9 @@ final class NotCountTest extends TestCase
 
             /**
              * Run the assertion is KO for test.
-             * @return bool
+             * @return true
              */
-            public function runKo(): bool
+            public function runKo(): true
             {
                 $provider = [1, 2, 3, 4, 5];
                 return self::assertNotCount($provider, 5, $this->error);

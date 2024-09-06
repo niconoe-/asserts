@@ -5,7 +5,9 @@ namespace Nicodev\Asserts\Categories;
 
 use Countable;
 use Throwable;
+
 use function count;
+
 use const COUNT_RECURSIVE;
 
 /**
@@ -20,25 +22,27 @@ trait AssertCountableTrait
      *
      * @param array<mixed>|Countable $array The array or the countable object to assert its emptiness.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return array{}
      */
-    protected static function assertEmpty(array|Countable $array, callable $exception): bool
+    protected static function assertEmpty(array|Countable $array, callable $exception): array
     {
         self::makeAssertion(0 === count($array), $exception);
-        return true;
+        return [];
     }
 
     /**
      * Asserts that the given array is not empty.
      *
-     * @param array<mixed>|Countable $array The array or the countable object to assert its emptiness.
+     * @template T of array<mixed>|Countable
+     *
+     * @param T $array The array or the countable object to assert its emptiness.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return T
      */
-    protected static function assertNotEmpty(array|Countable $array, callable $exception): bool
+    protected static function assertNotEmpty(array|Countable $array, callable $exception): array|Countable
     {
         self::makeAssertion(0 !== count($array), $exception);
-        return true;
+        return $array;
     }
 
     /**
@@ -49,7 +53,7 @@ trait AssertCountableTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertCount(array|Countable $array, int $expected, callable $exception): bool
+    protected static function assertCount(array|Countable $array, int $expected, callable $exception): true
     {
         self::makeAssertion(count($array) === $expected, $exception);
         return true;
@@ -63,7 +67,7 @@ trait AssertCountableTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertNotCount(array|Countable $array, int $notExpected, callable $exception): bool
+    protected static function assertNotCount(array|Countable $array, int $notExpected, callable $exception): true
     {
         self::makeAssertion(count($array) !== $notExpected, $exception);
         return true;
@@ -77,7 +81,7 @@ trait AssertCountableTrait
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
-    protected static function assertCountRecursive(array|Countable $array, int $expected, callable $exception): bool
+    protected static function assertCountRecursive(array|Countable $array, int $expected, callable $exception): true
     {
         self::makeAssertion(count($array, COUNT_RECURSIVE) === $expected, $exception);
         return true;
@@ -95,7 +99,7 @@ trait AssertCountableTrait
         array|Countable $array,
         int $notExpected,
         callable $exception
-    ): bool {
+    ): true {
         self::makeAssertion(count($array, COUNT_RECURSIVE) !== $notExpected, $exception);
         return true;
     }
