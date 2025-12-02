@@ -21,18 +21,18 @@ final class IsObjectTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsObject(new stdClass(), $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return true
+             * @return mixed
              */
-            public function runKo(): true
+            public function runKo(): mixed
             {
                 return self::assertIsObject(false, $this->error);
             }
@@ -41,7 +41,7 @@ final class IsObjectTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertEquals(new stdClass(), $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

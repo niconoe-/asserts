@@ -24,9 +24,9 @@ final class BetweenTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return int
              */
-            public function runOk(): bool
+            public function runOk(): int
             {
                 return self::assertBetween(1, 0, 2, $this->error);
             }
@@ -62,7 +62,7 @@ final class BetweenTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame(1, $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

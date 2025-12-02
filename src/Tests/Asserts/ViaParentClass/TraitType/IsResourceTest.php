@@ -22,7 +22,7 @@ final class IsResourceTest extends TestCase
         $this->testClass = new class() extends ParentClass 
         {
             /** @var resource Use for tests. */
-            private $resource;
+            public $resource;
 
             /**
              * Init the curl resource for tests.
@@ -43,18 +43,18 @@ final class IsResourceTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsResource($this->resource, $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return true
+             * @return mixed
              */
-            public function runKo(): true
+            public function runKo(): mixed
             {
                 return self::assertIsResource(false, $this->error);
             }
@@ -63,7 +63,7 @@ final class IsResourceTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame($this->testClass->resource, $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

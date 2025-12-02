@@ -30,25 +30,28 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return null
      */
-    protected static function assertIsNull(mixed $variable, callable $exception): true
+    protected static function assertIsNull(mixed $variable, callable $exception): null
     {
         self::makeAssertion(null === $variable, $exception);
-        return true;
+        return null;
     }
 
     /**
      * Asserts that the variable is a resource.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpsatn-return resource
+     * @return T
      */
-    protected static function assertIsResource(mixed $variable, callable $exception): true
+    protected static function assertIsResource(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(is_resource($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
@@ -56,12 +59,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return numeric-string
      */
-    protected static function assertIsNumeric(mixed $variable, callable $exception): true
+    protected static function assertIsNumeric(mixed $variable, callable $exception): string
     {
         self::makeAssertion(is_numeric($variable), $exception);
-        return true;
+        /** @var numeric-string */
+        return $variable;
     }
 
     /**
@@ -69,12 +73,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return object
      */
-    protected static function assertIsObject(mixed $variable, callable $exception): true
+    protected static function assertIsObject(mixed $variable, callable $exception): object
     {
         self::makeAssertion(is_object($variable), $exception);
-        return true;
+        /** @var object */
+        return $variable;
     }
 
     /**
@@ -82,12 +87,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return callable
      */
-    protected static function assertIsCallable(mixed $variable, callable $exception): true
+    protected static function assertIsCallable(mixed $variable, callable $exception): callable
     {
         self::makeAssertion(is_callable($variable), $exception);
-        return true;
+        /** @var callable */
+        return $variable;
     }
 
     /**
@@ -95,12 +101,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return float
      */
-    protected static function assertIsFloat(mixed $variable, callable $exception): true
+    protected static function assertIsFloat(mixed $variable, callable $exception): float
     {
         self::makeAssertion(is_float($variable), $exception);
-        return true;
+        /** @var float */
+        return $variable;
     }
 
     /**
@@ -108,12 +115,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return int
      */
-    protected static function assertIsInt(mixed $variable, callable $exception): true
+    protected static function assertIsInt(mixed $variable, callable $exception): int
     {
         self::makeAssertion(is_int($variable), $exception);
-        return true;
+        /** @var int */
+        return $variable;
     }
 
     /**
@@ -121,12 +129,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return (int|float)
      */
-    protected static function assertIsNumber(mixed $variable, callable $exception): true
+    protected static function assertIsNumber(mixed $variable, callable $exception): int|float
     {
         self::makeAssertion(is_int($variable) || is_float($variable), $exception);
-        return true;
+        /** @var (int|float) */
+        return $variable;
     }
 
     /**
@@ -134,12 +143,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return string
      */
-    protected static function assertIsString(mixed $variable, callable $exception): true
+    protected static function assertIsString(mixed $variable, callable $exception): string
     {
         self::makeAssertion(is_string($variable), $exception);
-        return true;
+        /** @var string */
+        return $variable;
     }
 
     /**
@@ -147,12 +157,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return bool
      */
-    protected static function assertIsBool(mixed $variable, callable $exception): true
+    protected static function assertIsBool(mixed $variable, callable $exception): bool
     {
         self::makeAssertion(is_bool($variable), $exception);
-        return true;
+        /** @var bool */
+        return $variable;
     }
 
     /**
@@ -160,12 +171,13 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return array<array-key, mixed>
      */
-    protected static function assertIsArray(mixed $variable, callable $exception): true
+    protected static function assertIsArray(mixed $variable, callable $exception): array
     {
         self::makeAssertion(is_array($variable), $exception);
-        return true;
+        /** @var array<array-key, mixed> */
+        return $variable;
     }
 
     /**
@@ -173,195 +185,266 @@ trait AssertTypeTrait
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return scalar
      */
-    protected static function assertIsScalar(mixed $variable, callable $exception): true
+    protected static function assertIsScalar(mixed $variable, callable $exception): bool|int|float|string
     {
         self::makeAssertion(is_scalar($variable), $exception);
-        return true;
+        /** @var scalar */
+        return $variable;
+    }
+
+    /**
+     * Asserts that the variable is NULL or a scalar.
+     *
+     * @param mixed $variable The given variable to test.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return null|scalar
+     */
+    protected static function assertIsNullOrScalar(mixed $variable, callable $exception): null|bool|int|float|string
+    {
+        self::makeAssertion(null === $variable || is_scalar($variable), $exception);
+        /** @var null|scalar */
+        return $variable;
     }
 
     /**
      * Asserts that the variable is one of the given types.
      *
+     * @template T of mixed
+     *
      * @param array<string> $types The given types.
-     * @param mixed $variable The given variable to test.
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return T
      */
-    protected static function assertIsTypeOf(array $types, mixed $variable, callable $exception): true
+    protected static function assertIsTypeOf(array $types, mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(in_array(gettype($variable), $types, true), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not NULL.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is null ? never : T)
+     * @return T
      */
-    protected static function assertIsNotNull(mixed $variable, callable $exception): true
+    protected static function assertIsNotNull(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(null !== $variable, $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not a resource.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is resource ? never : T)
+     * @return T
      */
-    protected static function assertIsNotResource(mixed $variable, callable $exception): true
+    protected static function assertIsNotResource(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_resource($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not numeric.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is numeric-string ? never : T)
+     * @return T
      */
-    protected static function assertIsNotNumeric(mixed $variable, callable $exception): true
+    protected static function assertIsNotNumeric(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_numeric($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not object.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is object ? never : T)
+     * @return T
      */
-    protected static function assertIsNotObject(mixed $variable, callable $exception): true
+    protected static function assertIsNotObject(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_object($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not callable.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is callable ? never : T)
+     * @return T
      */
-    protected static function assertIsNotCallable(mixed $variable, callable $exception): true
+    protected static function assertIsNotCallable(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_callable($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not float.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is float ? never : T)
+     * @return T
      */
-    protected static function assertIsNotFloat(mixed $variable, callable $exception): true
+    protected static function assertIsNotFloat(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_float($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not an int.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is int ? never : T)
+     * @return T
      */
-    protected static function assertIsNotInt(mixed $variable, callable $exception): true
+    protected static function assertIsNotInt(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_int($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not either an integer or a float.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is (int|float) ? never : T)
+     * @return T
      */
-    protected static function assertIsNotNumber(mixed $variable, callable $exception): true
+    protected static function assertIsNotNumber(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_int($variable) && !is_float($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not a string.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is string ? never : T)
+     * @return T
      */
-    protected static function assertIsNotString(mixed $variable, callable $exception): true
+    protected static function assertIsNotString(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_string($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not a bool.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is bool ? never : T)
+     * @return T
      */
-    protected static function assertIsNotBool(mixed $variable, callable $exception): true
+    protected static function assertIsNotBool(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_bool($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not an array.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is array<mixed> ? never : T)
+     * @return T
      */
-    protected static function assertIsNotArray(mixed $variable, callable $exception): true
+    protected static function assertIsNotArray(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_array($variable), $exception);
-        return true;
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not a scalar.
      *
-     * @param mixed $variable The given variable to test.
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @phpstan-return (T is scalar ? never : T)
+     * @return T
      */
-    protected static function assertIsNotScalar(mixed $variable, callable $exception): true
+    protected static function assertIsNotScalar(mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!is_scalar($variable), $exception);
-        return true;
+        return $variable;
+    }
+
+    /**
+     * Asserts that the variable is not NULL nor a scalar.
+     *
+     * @template T of mixed
+     *
+     * @param T $variable The given variable to test.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @phpstan-return (T is (null|scalar) ? never : T)
+     * @return T
+     */
+    protected static function assertIsNotNullOrScalar(mixed $variable, callable $exception): mixed
+    {
+        self::makeAssertion(null !== $variable && !is_scalar($variable), $exception);
+        return $variable;
     }
 
     /**
      * Asserts that the variable is not one of the given types.
      *
+     * @template T of mixed
+     *
      * @param array<string> $types The given types.
-     * @param mixed $variable The given variable to test.
+     * @param T $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return T
      */
-    protected static function assertIsNotTypeOf(array $types, mixed $variable, callable $exception): true
+    protected static function assertIsNotTypeOf(array $types, mixed $variable, callable $exception): mixed
     {
         self::makeAssertion(!in_array(gettype($variable), $types, true), $exception);
-        return true;
+        return $variable;
     }
 }

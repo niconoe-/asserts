@@ -24,27 +24,27 @@ final class BetweenOrEqualsTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return bool
+             * @return int
              */
-            public function runOk(): bool
+            public function runOk(): int
             {
                 return self::assertBetweenOrEquals(1, 0, 2, $this->error);
             }
 
             /**
              * Run the assertion is ok same as min for test.
-             * @return bool
+             * @return int
              */
-            public function runOkAsLower(): bool
+            public function runOkAsLower(): int
             {
                 return self::assertBetweenOrEquals(0, 0, 2, $this->error);
             }
 
             /**
              * Run the assertion is ok same as max for test.
-             * @return bool
+             * @return int
              */
-            public function runOkAsHigher(): bool
+            public function runOkAsHigher(): int
             {
                 return self::assertBetweenOrEquals(2, 0, 2, $this->error);
             }
@@ -62,9 +62,9 @@ final class BetweenOrEqualsTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
-        self::assertTrue($this->testClass->runOkAsLower());
-        self::assertTrue($this->testClass->runOkAsHigher());
+        self::assertSame(1, $this->testClass->runOk());
+        self::assertSame(0, $this->testClass->runOkAsLower());
+        self::assertSame(2, $this->testClass->runOkAsHigher());
     }
 
     public function testMakeAssertionKO(): void

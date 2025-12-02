@@ -27,7 +27,7 @@ trait AssertArrayTrait
     /**
      * Asserts that the given key exists in the given array.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to check the key existence.
      * @param int|string $key The key to check.
@@ -43,7 +43,7 @@ trait AssertArrayTrait
     /**
      * Asserts that the given element exists in the given array, with strict comparison.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to check the element existence.
      * @param T $value The value to check.
@@ -59,7 +59,7 @@ trait AssertArrayTrait
     /**
      * Asserts that the given array has a first element that exists.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to check the first element existence.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
@@ -74,7 +74,7 @@ trait AssertArrayTrait
     /**
      * Asserts that the given array has a last element that exists.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to check the last element existence.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
@@ -90,7 +90,7 @@ trait AssertArrayTrait
      * Asserts that the given array has at least one element that satisfies the given callback, and returns the first
      * element that matches.
      *
-     * @template T
+     * @template T of mixed
      * @template TKey of array-key
      *
      * @param array<TKey, T> $array The given array to check if any element satisfies the given callback.
@@ -108,7 +108,7 @@ trait AssertArrayTrait
      * Asserts that the given array has at least one element that satisfies the given callback, and returns the key of
      * the first element that matches.
      *
-     * @template T
+     * @template T of mixed
      * @template TKey of array-key
      *
      * @param array<TKey, T> $array The given array to check if any element satisfies the given callback.
@@ -126,7 +126,7 @@ trait AssertArrayTrait
     /**
      * Asserts that the given array has all its elements that satisfy the given callback.
      *
-     * @template T
+     * @template T of mixed
      * @template TKey of array-key
      *
      * @param array<TKey, T> $array The given array to check if any element satisfies the given callback.
@@ -143,7 +143,7 @@ trait AssertArrayTrait
     /**
      * Asserts that the given array has no duplicate elements.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to check if there are any duplicate elements.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
@@ -158,45 +158,48 @@ trait AssertArrayTrait
     /**
      * Asserts that the given array is a list.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to verify as being a list.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return list<T> The initial array, proven that is now a list.
      */
-    protected static function assertIsList(array $array, callable $exception): true
+    protected static function assertIsList(array $array, callable $exception): array
     {
         self::makeAssertion(array_is_list($array), $exception);
-        return true;
+        /** @var list<T> */
+        return $array;
     }
 
     /**
      * Asserts that the given array is not a list.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param array<int|string, T> $array The given array to verify as not being a list.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
-     * @return true
+     * @return array<int|string, T> The initial array, proven that is not a list.
      */
-    protected static function assertIsNotList(array $array, callable $exception): true
+    protected static function assertIsNotList(array $array, callable $exception): array
     {
         self::makeAssertion(false === array_is_list($array), $exception);
-        return true;
+        return $array;
     }
 
     /**
      * Asserts that a list of keys exist in cascade from an original array.
      *
-     * @param array<int|string, mixed> $array The original array to check keys in cascade.
+     * @template T of mixed
+     *
+     * @param array<int|string, T> $array The original array to check keys in cascade.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @param int|string ...$keys The list of keys to check in cascade.
-     * @return mixed The value of the last element to check.
+     * @return T The value of the last element to check.
      */
     protected static function assertKeysInCascade(
         array $array,
         callable $exception,
-        int|string ...$keys
+        int|string ...$keys,
     ): mixed {
         array_map(static function (int|string $key) use (&$array, $exception): void {
             self::makeAssertion(array_key_exists($key, $array), $exception);

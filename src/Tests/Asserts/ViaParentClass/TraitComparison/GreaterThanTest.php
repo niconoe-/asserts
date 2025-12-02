@@ -20,9 +20,9 @@ final class GreaterThanTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertGreaterThan(100, 1, $this->error);
             }
@@ -40,7 +40,7 @@ final class GreaterThanTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame(100, $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

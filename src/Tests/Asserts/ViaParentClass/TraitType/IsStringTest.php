@@ -20,18 +20,18 @@ final class IsStringTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsString('Hello world!', $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return true
+             * @return mixed
              */
-            public function runKo(): true
+            public function runKo(): mixed
             {
                 return self::assertIsString(false, $this->error);
             }
@@ -40,7 +40,7 @@ final class IsStringTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame('Hello world!', $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

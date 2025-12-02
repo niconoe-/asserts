@@ -24,9 +24,9 @@ final class IsNullTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsNull(null, $this->error);
             }
@@ -44,7 +44,7 @@ final class IsNullTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertNull($this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

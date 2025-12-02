@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Nicodev\Tests\Asserts\ViaParentClass\TraitComparison;
+namespace Nicodev\Tests\Asserts\ViaParentClass\TraitType;
 
 use Exception;
 use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class LessThanOrEqualsTest
+ * Final class IsNullOrScalarTest
  */
-final class LessThanOrEqualsTest extends TestCase
+final class IsNullOrScalarTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -24,23 +24,37 @@ final class LessThanOrEqualsTest extends TestCase
              */
             public function runOk(): mixed
             {
-                return self::assertLessThanOrEquals(1, 1, $this->error);
+                return self::assertIsNullOrScalar('I am scalar', $this->error);
+            }
+
+            /**
+             * Run the assertion is ok for test.
+             * @return mixed
+             */
+            public function runOkNull(): mixed
+            {
+                return self::assertIsNullOrScalar(null, $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return true
+             * @return mixed
              */
-            public function runKo(): true
+            public function runKo(): mixed
             {
-                return self::assertLessThanOrEquals(100, 1, $this->error);
+                return self::assertIsNullOrScalar(['I am not scalar'], $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame(1, $this->testClass->runOk());
+        self::assertSame('I am scalar', $this->testClass->runOk());
+    }
+
+    public function testMakeAssertionOKNull(): void
+    {
+        self::assertNull($this->testClass->runOkNull());
     }
 
     public function testMakeAssertionKO(): void
