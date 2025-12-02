@@ -24,9 +24,9 @@ final class IsCallableTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return callable
              */
-            public function runOk(): true
+            public function runOk(): callable
             {
                 $callback = static fn(): true => true;
                 return self::assertIsCallable($callback, $this->error);
@@ -45,7 +45,9 @@ final class IsCallableTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        $callable = $this->testClass->runOk();
+        self::assertIsCallable($callable);
+        self::assertTrue($callable());
     }
 
     public function testMakeAssertionKO(): void

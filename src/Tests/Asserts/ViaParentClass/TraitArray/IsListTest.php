@@ -20,9 +20,9 @@ final class IsListTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsList([0, 2, 4, 6, 8], $this->error);
             }
@@ -40,7 +40,7 @@ final class IsListTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame([0, 2, 4, 6, 8], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

@@ -24,9 +24,9 @@ final class IsTypeOfTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 $typesAllowed = ['array', 'object', 'integer', 'float'];
                 return self::assertIsTypeOf($typesAllowed, 5, $this->error);
@@ -46,7 +46,7 @@ final class IsTypeOfTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame(5, $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

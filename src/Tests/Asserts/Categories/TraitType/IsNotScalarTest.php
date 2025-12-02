@@ -24,9 +24,9 @@ final class IsNotScalarTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsNotScalar(['I am not scalar'], $this->error);
             }
@@ -44,7 +44,7 @@ final class IsNotScalarTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame(['I am not scalar'], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

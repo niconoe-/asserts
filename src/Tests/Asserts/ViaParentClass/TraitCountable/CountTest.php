@@ -20,9 +20,9 @@ final class CountTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 $provider = [1, 2, 3, 4, 5];
                 return self::assertCount($provider, 5, $this->error);
@@ -30,9 +30,9 @@ final class CountTest extends TestCase
 
             /**
              * Run the assertion is KO for test.
-             * @return true
+             * @return mixed
              */
-            public function runKo(): true
+            public function runKo(): mixed
             {
                 $provider = [1, 2, 3, 4, 5];
                 return self::assertCount($provider, 1, $this->error);
@@ -42,7 +42,7 @@ final class CountTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame([1, 2, 3, 4, 5], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

@@ -24,9 +24,9 @@ final class LessThanOrEqualsTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return int
              */
-            public function runOk(): true
+            public function runOk(): int
             {
                 return self::assertLessThanOrEquals(1, 1, $this->error);
             }
@@ -44,7 +44,7 @@ final class LessThanOrEqualsTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame(1, $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

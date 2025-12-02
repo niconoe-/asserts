@@ -24,9 +24,9 @@ final class IsFloatTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return float
              */
-            public function runOk(): true
+            public function runOk(): float
             {
                 return self::assertIsFloat(5.555, $this->error);
             }
@@ -44,7 +44,7 @@ final class IsFloatTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame(5.555, $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

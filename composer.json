@@ -9,16 +9,17 @@
   ],
   "require": {
     "php": ">=8.3.0",
-    "symfony/polyfill-php84": "*"
+    "symfony/polyfill-php84": "*",
+    "symfony/polyfill-php85": "*"
   },
   "require-dev": {
     "phpstan/extension-installer": "^1.4",
-    "phpstan/phpstan": "^1.12",
-    "phpstan/phpstan-phpunit": "^1.4",
-    "phpstan/phpstan-strict-rules": "^1.6",
-    "phpunit/phpunit": "^11.3",
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-phpunit": "^2.0",
+    "phpstan/phpstan-strict-rules": "^2.0",
+    "phpunit/phpunit": "^12.4",
     "roave/security-advisories": "dev-latest",
-    "vimeo/psalm": "6.x-dev"
+    "vimeo/psalm": "6.13"
   },
   "autoload": {"psr-4": {"Nicodev\\Asserts\\": "src/Asserts"}},
   "autoload-dev": {"psr-4": {"Nicodev\\Tests\\": "src/Tests"}},

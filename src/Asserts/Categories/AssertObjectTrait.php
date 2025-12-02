@@ -19,7 +19,7 @@ trait AssertObjectTrait
     /**
      * Asserts that the given object is an instance of the given type.
      *
-     * @template T
+     * @template T of mixed
      *
      * @param T $object The given object to test.
      * @param string $type The expected type of the given object.
@@ -43,7 +43,7 @@ trait AssertObjectTrait
     protected static function assertPropertiesInCascade(
         object $object,
         callable $exception,
-        string ...$properties
+        string ...$properties,
     ): mixed {
         array_map(static function (string $property) use (&$object, $exception): void {
             self::makeAssertion(property_exists($object, $property), $exception);

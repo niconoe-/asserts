@@ -20,18 +20,18 @@ final class IsNotArrayTest extends TestCase
         {
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsNotArray('[]', $this->error);
             }
 
             /**
              * Run the assertion is KO for test.
-             * @return true
+             * @return mixed
              */
-            public function runKo(): true
+            public function runKo(): mixed
             {
                 return self::assertIsNotArray(['Am I an array?' => true], $this->error);
             }
@@ -40,7 +40,7 @@ final class IsNotArrayTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame('[]', $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

@@ -24,9 +24,9 @@ final class IsNotNumericTest extends TestCase
 
             /**
              * Run the assertion is ok for test.
-             * @return true
+             * @return mixed
              */
-            public function runOk(): true
+            public function runOk(): mixed
             {
                 return self::assertIsNotNumeric('a b c d', $this->error);
             }
@@ -44,7 +44,7 @@ final class IsNotNumericTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertTrue($this->testClass->runOk());
+        self::assertSame('a b c d', $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

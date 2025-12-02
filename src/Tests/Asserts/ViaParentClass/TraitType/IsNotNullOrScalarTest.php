@@ -8,9 +8,9 @@ use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNullTest
+ * Final class IsNotNullOrScalarTest
  */
-final class IsNullTest extends TestCase
+final class IsNotNullOrScalarTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -24,7 +24,7 @@ final class IsNullTest extends TestCase
              */
             public function runOk(): mixed
             {
-                return self::assertIsNull(null, $this->error);
+                return self::assertIsNotNullOrScalar(['I am not scalar'], $this->error);
             }
 
             /**
@@ -33,14 +33,23 @@ final class IsNullTest extends TestCase
              */
             public function runKo(): mixed
             {
-                return self::assertIsNull(false, $this->error);
+                return self::assertIsNotNullOrScalar('I am not scalar', $this->error);
+            }
+
+            /**
+             * Run the assertion is KO for test.
+             * @return mixed
+             */
+            public function runKoNull(): mixed
+            {
+                return self::assertIsNotNullOrScalar(null, $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertNull($this->testClass->runOk());
+        self::assertSame(['I am not scalar'], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void
@@ -48,5 +57,12 @@ final class IsNullTest extends TestCase
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('This assertion fails.');
         $this->testClass->runKo();
+    }
+
+    public function testMakeAssertionKONull(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('This assertion fails.');
+        $this->testClass->runKoNull();
     }
 }

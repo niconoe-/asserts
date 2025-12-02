@@ -9,9 +9,9 @@ use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNotFloatTest
+ * Final class IsNullOrScalarTest
  */
-final class IsNotFloatTest extends TestCase
+final class IsNullOrScalarTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -28,7 +28,16 @@ final class IsNotFloatTest extends TestCase
              */
             public function runOk(): mixed
             {
-                return self::assertIsNotFloat(5, $this->error);
+                return self::assertIsNullOrScalar('I am scalar', $this->error);
+            }
+
+            /**
+             * Run the assertion is ok for test.
+             * @return mixed
+             */
+            public function runOkNull(): mixed
+            {
+                return self::assertIsNullOrScalar(null, $this->error);
             }
 
             /**
@@ -37,14 +46,19 @@ final class IsNotFloatTest extends TestCase
              */
             public function runKo(): true
             {
-                return self::assertIsNotFloat(5.555, $this->error);
+                return self::assertIsNullOrScalar(['I am not scalar'], $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame(5, $this->testClass->runOk());
+        self::assertSame('I am scalar', $this->testClass->runOk());
+    }
+
+    public function testMakeAssertionOKNull(): void
+    {
+        self::assertNull($this->testClass->runOkNull());
     }
 
     public function testMakeAssertionKO(): void
