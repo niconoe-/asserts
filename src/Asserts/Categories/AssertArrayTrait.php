@@ -115,7 +115,6 @@ trait AssertArrayTrait
      */
     protected static function assertAnyKey(array $array, callable $callback, callable $exception): int|string
     {
-        /** @var null|int|string $key */
         $key = array_find_key($array, $callback);
         return self::assertIsNotNull($key, $exception);
     }
