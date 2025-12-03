@@ -100,8 +100,9 @@ trait AssertArrayTrait
      */
     protected static function assertAny(array $array, callable $callback, callable $exception): mixed
     {
-        self::makeAssertion(array_any($array, $callback), $exception);
-        return array_find($array, $callback);
+        $key = array_find_key($array, $callback);
+        self::makeAssertion(null !== $key, $exception);
+        return $array[$key];
     }
 
     /**
@@ -118,9 +119,9 @@ trait AssertArrayTrait
      */
     protected static function assertAnyKey(array $array, callable $callback, callable $exception): int|string
     {
-        self::makeAssertion(array_any($array, $callback), $exception);
-        /** @var int|string We asserted the element exists, so the key cannot be NULL. */
-        return array_find_key($array, $callback);
+        /** @var null|int|string $key */
+        $key = array_find_key($array, $callback);
+        return self::assertIsNotNull($key, $exception);
     }
 
     /**
