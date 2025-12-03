@@ -98,9 +98,7 @@ trait AssertArrayTrait
      */
     protected static function assertAny(array $array, callable $callback, callable $exception): mixed
     {
-        $key = array_find_key($array, $callback);
-        self::assertIsNotNull($key, $exception);
-        return $array[$key];
+        return $array[self::assertAnyKey($array, $callback, $exception)];
     }
 
     /**
