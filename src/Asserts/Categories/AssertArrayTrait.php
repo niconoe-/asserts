@@ -6,8 +6,6 @@ namespace Nicodev\Asserts\Categories;
 use Throwable;
 
 use function array_all;
-use function array_any;
-use function array_find;
 use function array_find_key;
 use function array_is_list;
 use function array_key_exists;
@@ -101,7 +99,7 @@ trait AssertArrayTrait
     protected static function assertAny(array $array, callable $callback, callable $exception): mixed
     {
         $key = array_find_key($array, $callback);
-        self::makeAssertion(null !== $key, $exception);
+        self::assertIsNotNull($key, $exception);
         return $array[$key];
     }
 
