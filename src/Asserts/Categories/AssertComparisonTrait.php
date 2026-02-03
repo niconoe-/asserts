@@ -5,6 +5,8 @@ namespace Nicodev\Asserts\Categories;
 
 use Throwable;
 
+use function trim;
+
 /**
  * Trait AssertComparisonTrait
  *
@@ -197,5 +199,33 @@ trait AssertComparisonTrait
     {
         static::makeAssertion($min < $actual && $max > $actual, $exception);
         return $actual;
+    }
+
+    /**
+     * Asserts that the given string, when trimmed, is an empty string.
+     *
+     * @param null|string $actual The string to trim, then compare.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return "''" An empty string
+     */
+    protected static function assertEmptyString(null|string $actual, callable $exception): string
+    {
+        static::makeAssertion('' === trim((string)$actual), $exception);
+        return '';
+    }
+
+    /**
+     * Asserts that the given string, when trimmed, is not an empty string.
+     *
+     * @param null|string $actual The string to trim, then compare.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return non-empty-string The non-empty-string trimmed.
+     */
+    protected static function assertNonEmptyString(null|string $actual, callable $exception): string
+    {
+        $trimmed = trim((string)$actual);
+        static::makeAssertion('' !== $trimmed, $exception);
+        /** @var non-empty-string */
+        return $trimmed;
     }
 }
