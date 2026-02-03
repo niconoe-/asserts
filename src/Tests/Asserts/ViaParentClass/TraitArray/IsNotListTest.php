@@ -24,7 +24,7 @@ final class IsNotListTest extends TestCase
              */
             public function runOk(): mixed
             {
-                return self::assertIsNotList(['foo' => 'bar'], $this->error);
+                return self::assertIsNotList(['foo' => 'bar', 'bar' => 'baz'], $this->error);
             }
 
             /**
@@ -40,7 +40,7 @@ final class IsNotListTest extends TestCase
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame(['foo' => 'bar'], $this->testClass->runOk());
+        self::assertSame(['foo' => 'bar', 'bar' => 'baz'], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void
