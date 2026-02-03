@@ -13,11 +13,11 @@
     "symfony/polyfill-php85": "*"
   },
   "require-dev": {
-    "phpstan/extension-installer": "^1.4",
-    "phpstan/phpstan": "^2.1",
-    "phpstan/phpstan-phpunit": "^2.0",
-    "phpstan/phpstan-strict-rules": "^2.0",
-    "phpunit/phpunit": "^12.4",
+    "phpstan/extension-installer": "^1.4.3",
+    "phpstan/phpstan": "^2.1.38",
+    "phpstan/phpstan-phpunit": "^2.0.12",
+    "phpstan/phpstan-strict-rules": "^2.0.8",
+    "phpunit/phpunit": "^12.5.8",
     "roave/security-advisories": "dev-latest",
     "vimeo/psalm": "6.13"
   },

@@ -28,6 +28,15 @@ final class IsArrayTest extends TestCase
             }
 
             /**
+             * Run the assertion is ok for test with data.
+             * @return mixed
+             */
+            public function runOkData(): mixed
+            {
+                return self::assertIsArray(['foo' => 'bar', 'bar' => 'baz'], $this->error);
+            }
+
+            /**
              * Run the assertion is KO for test.
              * @return mixed
              */
@@ -41,6 +50,7 @@ final class IsArrayTest extends TestCase
     public function testMakeAssertionOK(): void
     {
         self::assertSame([], $this->testClass->runOk());
+        self::assertSame(['foo' => 'bar', 'bar' => 'baz'], $this->testClass->runOkData());
     }
 
     public function testMakeAssertionKO(): void
