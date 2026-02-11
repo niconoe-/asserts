@@ -23,7 +23,7 @@ final class NonEmptyStringTest extends TestCase
             use ErrorBuilderTrait;
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return non-empty-string
              */
             public function runOk(): string
@@ -32,7 +32,7 @@ final class NonEmptyStringTest extends TestCase
             }
 
             /**
-             * Run the assertion is ko for test.
+             * Run the assertion is ko for this test.
              * @return non-empty-string
              */
             public function runKo(): string
@@ -41,7 +41,7 @@ final class NonEmptyStringTest extends TestCase
             }
 
             /**
-             * Run the assertion is ko for test with spaces.
+             * Run the assertion is ko for this test with spaces.
              * @return non-empty-string
              */
             public function runKoSpaces(): string
@@ -50,7 +50,7 @@ final class NonEmptyStringTest extends TestCase
             }
 
             /**
-             * Run the assertion is ko for test with NULL.
+             * Run the assertion is ko for this test with NULL.
              * @return non-empty-string
              */
             public function runKoNull(): string

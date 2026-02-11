@@ -15,7 +15,7 @@ use function is_writable;
 /**
  * Trait AssertFileTrait
  *
- * List of assertions associated to file or directory management.
+ * List of assertions associated with file or directory management.
  */
 trait AssertFileTrait
 {

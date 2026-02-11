@@ -23,7 +23,7 @@ final class FalseTest extends TestCase
             use ErrorBuilderTrait;
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return false
              */
             public function runOk(): false
@@ -32,7 +32,7 @@ final class FalseTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return false
              */
             public function runKo(): false

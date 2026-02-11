@@ -10,7 +10,7 @@ use function trim;
 /**
  * Trait AssertComparisonTrait
  *
- * List of assertions associated to comparison.
+ * List of assertions associated with comparison.
  */
 trait AssertComparisonTrait
 {

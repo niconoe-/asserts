@@ -12,7 +12,7 @@ use function property_exists;
 /**
  * Trait AssertObjectTrait
  *
- * List of assertions associated to object management.
+ * List of assertions associated with object management.
  */
 trait AssertObjectTrait
 {
@@ -33,7 +33,7 @@ trait AssertObjectTrait
     }
 
     /**
-     * Asserts that a list of properties exist in cascade from an original object.
+     * Asserts that a list of properties exists in cascade from an original object.
      *
      * @param object $object The original object to check properties in cascade.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.

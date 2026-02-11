@@ -9,7 +9,7 @@ use Throwable;
  * Trait AssertTrait
  *
  * The only trait to insert in your application.
- * Contains every required traits defined in all categories.
+ * Contains every required trait defined in all categories.
  */
 trait AssertTrait
 {

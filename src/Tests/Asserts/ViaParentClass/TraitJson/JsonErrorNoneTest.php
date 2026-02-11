@@ -21,23 +21,23 @@ final class JsonErrorNoneTest extends TestCase
         $this->testClass = new class() extends ParentClass 
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return true
              */
             public function runOk(): true
             {
-                /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
+                /** @noinspection JsonEncodingApiUsageInspection The aim is to get the errors via json_last_error(). */
                 json_decode('{}', false);
                 return self::assertJsonErrorNone($this->error);
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return true
              */
             public function runKo(): true
             {
-                /** @noinspection JsonEncodingApiUsageInspection Aim is to get the errors via json_last_error(). */
+                /** @noinspection JsonEncodingApiUsageInspection The aim is to get the errors via json_last_error(). */
                 json_decode('{"', false);
                 return self::assertJsonErrorNone($this->error);
             }

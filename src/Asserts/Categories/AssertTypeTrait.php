@@ -21,7 +21,7 @@ use function is_string;
 /**
  * Trait AssertTypeTrait
  *
- * List of assertions associated to type hints.
+ * List of assertions associated with type hints.
  */
 trait AssertTypeTrait
 {
@@ -69,7 +69,7 @@ trait AssertTypeTrait
     }
 
     /**
-     * Asserts that the variable is object.
+     * Asserts that the variable is an object.
      *
      * @param mixed $variable The given variable to test.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
@@ -273,7 +273,7 @@ trait AssertTypeTrait
     }
 
     /**
-     * Asserts that the variable is not object.
+     * Asserts that the variable is not an object.
      *
      * @template T of mixed
      *

@@ -19,7 +19,7 @@ final class UniqueTest extends TestCase
         $this->testClass = new class() extends ParentClass 
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return list<int>
              */
             public function runOk(): array
@@ -28,7 +28,7 @@ final class UniqueTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return null
              */
             public function runKo(): null

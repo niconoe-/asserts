@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Nicodev\Tests\Asserts\Categories\TraitCountable;
+namespace Nicodev\Tests\Asserts\Categories\TraitArray;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
@@ -9,9 +9,9 @@ use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class NotCountTest
+ * Final class NotKeyExistsTest
  */
-final class NotCountTest extends TestCase
+final class NotKeyExistsTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -24,29 +24,29 @@ final class NotCountTest extends TestCase
 
             /**
              * Run the assertion is ok for this test.
-             * @return mixed
+             * @return array<string, string>
              */
-            public function runOk(): mixed
+            public function runOk(): array
             {
-                $provider = [1, 2, 3, 4, 5];
-                return self::assertNotCount($provider, 1, $this->error);
+                $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
+                return self::assertNotKeyExists($provider, 'en_UK', $this->error);
             }
 
             /**
              * Run the assertion is KO for this test.
-             * @return mixed
+             * @return string
              */
-            public function runKo(): mixed
+            public function runKo(): string
             {
-                $provider = [1, 2, 3, 4, 5];
-                return self::assertNotCount($provider, 5, $this->error);
+                $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
+                return self::assertNotKeyExists($provider, 'fr_FR', $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame([1, 2, 3, 4, 5], $this->testClass->runOk());
+        self::assertSame(['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

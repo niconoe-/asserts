@@ -23,7 +23,7 @@ final class IsArrayTest extends TestCase
             use ErrorBuilderTrait;
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return array<mixed>
              */
             public function runOk(): array
@@ -32,7 +32,7 @@ final class IsArrayTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test with data.
+             * Run the assertion is ok for this test with data.
              * @return array<mixed>
              */
             public function runOkData(): array
@@ -41,7 +41,7 @@ final class IsArrayTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return true
              */
             public function runKo(): true

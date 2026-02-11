@@ -18,7 +18,7 @@ use function reset;
 /**
  * Trait AssertArrayTrait
  *
- * List of assertions associated to array management.
+ * List of assertions associated with array management.
  */
 trait AssertArrayTrait
 {
@@ -39,6 +39,22 @@ trait AssertArrayTrait
     }
 
     /**
+     * Asserts that the given key does not exist in the given array.
+     *
+     * @template T of mixed
+     *
+     * @param array<int|string, T> $array The given array to check the non-existence of the key.
+     * @param int|string $key The key to check.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return array<int|string, T> The original array.
+     */
+    protected static function assertNotKeyExists(array $array, int|string $key, callable $exception): array
+    {
+        self::makeAssertion(false === array_key_exists($key, $array), $exception);
+        return $array;
+    }
+
+    /**
      * Asserts that the given element exists in the given array, with strict comparison.
      *
      * @template T of mixed
@@ -55,11 +71,27 @@ trait AssertArrayTrait
     }
 
     /**
+     * Asserts that the given element does not exist in the given array, with strict comparison.
+     *
+     * @template T of mixed
+     *
+     * @param array<int|string, T> $array The given array to check the element existence.
+     * @param T $value The value to check.
+     * @param callable(): Throwable $exception The exception to throw if the assertion fails.
+     * @return true
+     */
+    protected static function assertNotInArray(array $array, mixed $value, callable $exception): true
+    {
+        self::makeAssertion(false === in_array($value, $array, true), $exception);
+        return true;
+    }
+
+    /**
      * Asserts that the given array has a first element that exists.
      *
      * @template T of mixed
      *
-     * @param array<int|string, T> $array The given array to check the first element existence.
+     * @param array<int|string, T> $array The given array to check the first element's existence.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return T The first element of the array.
      */
@@ -74,7 +106,7 @@ trait AssertArrayTrait
      *
      * @template T of mixed
      *
-     * @param array<int|string, T> $array The given array to check the last element existence.
+     * @param array<int|string, T> $array The given array to check the last element's existence.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return T The last element of the array.
      */
@@ -85,7 +117,7 @@ trait AssertArrayTrait
     }
 
     /**
-     * Asserts that the given array has at least one element that satisfies the given callback, and returns the first
+     * Asserts that the given array has at least one element that satisfies the given callback and returns the first
      * element that matches.
      *
      * @template T of mixed
@@ -102,7 +134,7 @@ trait AssertArrayTrait
     }
 
     /**
-     * Asserts that the given array has at least one element that satisfies the given callback, and returns the key of
+     * Asserts that the given array has at least one element that satisfies the given callback and returns the key of
      * the first element that matches.
      *
      * @template T of mixed
@@ -182,7 +214,7 @@ trait AssertArrayTrait
     }
 
     /**
-     * Asserts that a list of keys exist in cascade from an original array.
+     * Asserts that a list of keys exists in cascade from an original array.
      *
      * @template T of mixed
      *

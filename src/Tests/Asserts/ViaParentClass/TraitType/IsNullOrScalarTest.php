@@ -19,7 +19,7 @@ final class IsNullOrScalarTest extends TestCase
         $this->testClass = new class() extends ParentClass 
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return mixed
              */
             public function runOk(): mixed
@@ -28,7 +28,7 @@ final class IsNullOrScalarTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return mixed
              */
             public function runOkNull(): mixed
@@ -37,7 +37,7 @@ final class IsNullOrScalarTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return mixed
              */
             public function runKo(): mixed

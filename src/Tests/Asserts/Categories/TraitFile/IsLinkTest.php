@@ -23,7 +23,7 @@ final class IsLinkTest extends TestCase
             use ErrorBuilderTrait;
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return string
              */
             public function runOk(): string
@@ -32,7 +32,7 @@ final class IsLinkTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return string
              */
             public function runKo(): string
