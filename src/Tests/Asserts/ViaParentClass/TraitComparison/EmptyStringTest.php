@@ -19,7 +19,7 @@ final class EmptyStringTest extends TestCase
         $this->testClass = new class() extends ParentClass
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return "''"
              */
             public function runOk(): string
@@ -28,7 +28,7 @@ final class EmptyStringTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test with spaces.
+             * Run the assertion is ok for this test with spaces.
              * @return "''"
              */
             public function runOkSpaces(): string
@@ -37,7 +37,7 @@ final class EmptyStringTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test with NULL.
+             * Run the assertion is ok for this test with NULL.
              * @return "''"
              */
             public function runOkNull(): string
@@ -46,7 +46,7 @@ final class EmptyStringTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return "''"
              */
             public function runKo(): string

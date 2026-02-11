@@ -10,7 +10,7 @@ use function in_array;
 /**
  * Trait AssertBooleanTrait
  *
- * List of assertions associated to boolean comparison.
+ * List of assertions associated with boolean comparison.
  */
 trait AssertBooleanTrait
 {
@@ -82,7 +82,7 @@ trait AssertBooleanTrait
     /**
      * Asserts that all the given conditions are strictly true.
      *
-     * @param array<bool> $conditions The list of conditions to check all are strictly true.
+     * @param array<bool> $conditions The list of conditions to check each of them must be strictly true.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return true
      */
@@ -108,7 +108,7 @@ trait AssertBooleanTrait
     /**
      * Asserts that all the given conditions are strictly false.
      *
-     * @param array<bool> $conditions The list of conditions to check all are strictly false.
+     * @param array<bool> $conditions The list of conditions to check each of them must be strictly false.
      * @param callable(): Throwable $exception The exception to throw if the assertion fails.
      * @return false
      */

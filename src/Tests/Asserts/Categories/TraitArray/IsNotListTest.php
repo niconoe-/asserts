@@ -23,7 +23,7 @@ final class IsNotListTest extends TestCase
             use ErrorBuilderTrait;
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return array<mixed>
              */
             public function runOk(): array
@@ -32,7 +32,7 @@ final class IsNotListTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return null
              */
             public function runKo(): null

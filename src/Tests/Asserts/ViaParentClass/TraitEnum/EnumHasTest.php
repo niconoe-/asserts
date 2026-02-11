@@ -26,7 +26,7 @@ final class EnumHasTest extends TestCase
         $testClass = new class() extends ParentClass
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return BackedEnum
              */
             public function runOk(): BackedEnum
@@ -36,7 +36,7 @@ final class EnumHasTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return BackedEnum
              */
             public function runKo(): BackedEnum
@@ -51,7 +51,7 @@ final class EnumHasTest extends TestCase
         $testClass = new class() extends ParentClass
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return BackedEnum
              */
             public function runOk(): BackedEnum
@@ -61,7 +61,7 @@ final class EnumHasTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return BackedEnum
              */
             public function runKo(): BackedEnum

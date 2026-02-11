@@ -9,17 +9,17 @@ use Throwable;
 /**
  * Trait AssertEnumTrait
  *
- * List of assertions associated to enum feature.
+ * List of assertions associated with the enum feature.
  */
 trait AssertEnumTrait
 {
     /**
-     * Asserts that a value from a given Enum exists, and returns the Enum object if exists.
+     * Asserts that a value from a given Enum exists and returns the Enum object if exists.
      *
      * @template T of BackedEnum
      * @param class-string<T> $enumName Name of the backed enum on which to try to get the value from.
-     * @param int|string $backedValue The value associated to the backedEnum, if exists.
-     * @param callable(): Throwable $exception The exception to throw if value is not in the list of backed enum values.
+     * @param int|string $backedValue The value associated with the backedEnum, if exists.
+     * @param callable(): Throwable $exception The exception to throw if the value is not in the backed enum values.
      * @return T The BackedEnum fetched thanks to the given value.
      */
     protected static function assertEnumHas(string $enumName, int|string $backedValue, callable $exception): BackedEnum

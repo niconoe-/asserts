@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Nicodev\Tests\Asserts\ViaParentClass\TraitType;
+namespace Nicodev\Tests\Asserts\ViaParentClass\TraitArray;
 
 use Exception;
 use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNotNumericTest
+ * Final class NotKeyExistsTest
  */
-final class IsNotNumericTest extends TestCase
+final class NotKeyExistsTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -20,27 +20,29 @@ final class IsNotNumericTest extends TestCase
         {
             /**
              * Run the assertion is ok for this test.
-             * @return mixed
+             * @return array<string, string>
              */
-            public function runOk(): mixed
+            public function runOk(): array
             {
-                return self::assertIsNotNumeric('a b c d', $this->error);
+                $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
+                return self::assertNotKeyExists($provider, 'en_UK', $this->error);
             }
 
             /**
              * Run the assertion is KO for this test.
-             * @return mixed
+             * @return array<string, string>
              */
-            public function runKo(): mixed
+            public function runKo(): array
             {
-                return self::assertIsNotNumeric('1e10', $this->error);
+                $provider = ['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'];
+                return self::assertNotKeyExists($provider, 'fr_FR', $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame('a b c d', $this->testClass->runOk());
+        self::assertSame(['en_US' => '🇺🇸', 'fr_FR' => '🇫🇷', 'de_DE' => '🇩🇪'], $this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

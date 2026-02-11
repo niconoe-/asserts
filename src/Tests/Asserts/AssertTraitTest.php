@@ -31,7 +31,7 @@ final class AssertTraitTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              */
             public function runOk(): void
             {
@@ -39,7 +39,7 @@ final class AssertTraitTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              */
             public function runKo(): void
             {
@@ -50,7 +50,7 @@ final class AssertTraitTest extends TestCase
         $this->testParentClass = new class() extends ParentClass
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              */
             public function runOk(): void
             {
@@ -58,7 +58,7 @@ final class AssertTraitTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              */
             public function runKo(): void
             {

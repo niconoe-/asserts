@@ -21,7 +21,7 @@ final class PositiveTest extends TestCase
         $this->testClass = new class() extends ParentClass 
         {
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return int|float
              */
             public function runOk(): int|float
@@ -30,7 +30,7 @@ final class PositiveTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok closest value.
+             * Run the assertion is ok with the closest value.
              * @return int|float
              */
             public function runOkAsClosest(): int|float
@@ -48,7 +48,7 @@ final class PositiveTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return int|float
              */
             public function runKo(): int|float

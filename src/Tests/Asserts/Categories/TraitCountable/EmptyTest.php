@@ -23,7 +23,7 @@ final class EmptyTest extends TestCase
             use ErrorBuilderTrait;
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return array{}
              */
             public function runOk(): array
@@ -32,7 +32,7 @@ final class EmptyTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return array{}
              */
             public function runKo(): array

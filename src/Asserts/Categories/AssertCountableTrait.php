@@ -13,7 +13,7 @@ use const COUNT_RECURSIVE;
 /**
  * Trait AssertCountableTrait
  *
- * List of assertions associated to countable elements.
+ * List of assertions associated with countable elements.
  */
 trait AssertCountableTrait
 {

@@ -46,7 +46,7 @@ final class IsResourceTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test.
+             * Run the assertion is ok for this test.
              * @return mixed
              */
             public function runOk(): mixed
@@ -55,7 +55,7 @@ final class IsResourceTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return true
              */
             public function runKo(): true

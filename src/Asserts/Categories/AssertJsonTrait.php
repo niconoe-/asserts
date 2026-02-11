@@ -14,13 +14,13 @@ use const JSON_ERROR_NONE;
 /**
  * Trait AssertJsonTrait
  *
- * List of assertions associated to JSON.
+ * List of assertions associated with JSON.
  */
 trait AssertJsonTrait
 {
     final protected const int ASSERT_JSON_RETURN_NULL = 0; // No decode
-    final protected const int ASSERT_JSON_RETURN_ARRAY = 1; // Decode in associative way
-    final protected const int ASSERT_JSON_RETURN_OBJECT = 2; // Decode in object way
+    final protected const int ASSERT_JSON_RETURN_ARRAY = 1; // Decode in the associative way
+    final protected const int ASSERT_JSON_RETURN_OBJECT = 2; // Decode in the object way
 
     /**
      * Asserts that the last JSON error is NONE.
@@ -35,7 +35,7 @@ trait AssertJsonTrait
     }
 
     /**
-     * Asserts that the given string is JSON encoded, and possibly returns the decoded version into array or object.
+     * Asserts that the given string is JSON encoded and possibly returns the decoded version into array or object.
      *
      * @template T of self::ASSERT_JSON_RETURN_*
      * @param string $string To validate if JSON string

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Nicodev\Tests\Asserts\Categories\TraitCountable;
+namespace Nicodev\Tests\Asserts\Categories\TraitArray;
 
 use Exception;
 use Nicodev\Asserts\AssertTrait;
@@ -9,9 +9,9 @@ use Nicodev\Tests\Resources\ErrorBuilderTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class NotCountTest
+ * Final class NotInArrayTest
  */
-final class NotCountTest extends TestCase
+final class NotInArrayTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -24,29 +24,29 @@ final class NotCountTest extends TestCase
 
             /**
              * Run the assertion is ok for this test.
-             * @return mixed
+             * @return true
              */
-            public function runOk(): mixed
+            public function runOk(): true
             {
-                $provider = [1, 2, 3, 4, 5];
-                return self::assertNotCount($provider, 1, $this->error);
+                $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
+                return self::assertNotInArray($provider, '3', $this->error);
             }
 
             /**
              * Run the assertion is KO for this test.
-             * @return mixed
+             * @return true
              */
-            public function runKo(): mixed
+            public function runKo(): true
             {
-                $provider = [1, 2, 3, 4, 5];
-                return self::assertNotCount($provider, 5, $this->error);
+                $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
+                return self::assertNotInArray($provider, 3, $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame([1, 2, 3, 4, 5], $this->testClass->runOk());
+        self::assertTrue($this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

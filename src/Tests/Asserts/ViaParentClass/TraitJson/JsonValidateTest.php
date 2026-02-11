@@ -19,7 +19,7 @@ final class JsonValidateTest extends TestCase
         $this->testClass = new class() extends ParentClass
         {
             /**
-             * Run the assertion is ok for test, but expects no return.
+             * Run the assertion is ok for this test but expects no return.
              * @return null
              */
             public function runOkNoReturn(): null
@@ -28,7 +28,7 @@ final class JsonValidateTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test, but expects associative array.
+             * Run the assertion is ok for this test but expects an associative array.
              * @return array<mixed>
              */
             public function runOkAssoc(): array
@@ -37,7 +37,7 @@ final class JsonValidateTest extends TestCase
             }
 
             /**
-             * Run the assertion is ok for test, but expects object.
+             * Run the assertion is ok for this test but expects an object.
              * @return object
              */
             public function runOkObject(): object
@@ -46,7 +46,7 @@ final class JsonValidateTest extends TestCase
             }
 
             /**
-             * Run the assertion is KO for test.
+             * Run the assertion is KO for this test.
              * @return null
              */
             public function runKo(): null

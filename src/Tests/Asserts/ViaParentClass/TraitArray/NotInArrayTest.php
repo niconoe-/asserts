@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Nicodev\Tests\Asserts\ViaParentClass\TraitType;
+namespace Nicodev\Tests\Asserts\ViaParentClass\TraitArray;
 
 use Exception;
 use Nicodev\Tests\Resources\ParentClass;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Final class IsNotNumericTest
+ * Final class NotInArrayTest
  */
-final class IsNotNumericTest extends TestCase
+final class NotInArrayTest extends TestCase
 {
     private readonly object $testClass;
 
@@ -20,27 +20,29 @@ final class IsNotNumericTest extends TestCase
         {
             /**
              * Run the assertion is ok for this test.
-             * @return mixed
+             * @return true
              */
-            public function runOk(): mixed
+            public function runOk(): true
             {
-                return self::assertIsNotNumeric('a b c d', $this->error);
+                $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
+                return self::assertNotInArray($provider, '3', $this->error);
             }
 
             /**
              * Run the assertion is KO for this test.
-             * @return mixed
+             * @return true
              */
-            public function runKo(): mixed
+            public function runKo(): true
             {
-                return self::assertIsNotNumeric('1e10', $this->error);
+                $provider = ['en_US' => 1, 'fr_FR' => 2, 'de_DE' => 3];
+                return self::assertNotInArray($provider, 3, $this->error);
             }
         };
     }
 
     public function testMakeAssertionOK(): void
     {
-        self::assertSame('a b c d', $this->testClass->runOk());
+        self::assertTrue($this->testClass->runOk());
     }
 
     public function testMakeAssertionKO(): void

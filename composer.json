@@ -9,15 +9,15 @@
   ],
   "require": {
     "php": ">=8.3.0",
-    "symfony/polyfill-php84": "*",
-    "symfony/polyfill-php85": "*"
+    "symfony/polyfill-php84": ">=1.33",
+    "symfony/polyfill-php85": ">=1.33"
   },
   "require-dev": {
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": "^2.1.38",
-    "phpstan/phpstan-phpunit": "^2.0.12",
-    "phpstan/phpstan-strict-rules": "^2.0.8",
-    "phpunit/phpunit": "^12.5.8",
+    "phpstan/phpstan": "^2.1.39",
+    "phpstan/phpstan-phpunit": "^2.0.15",
+    "phpstan/phpstan-strict-rules": "^2.0.10",
+    "phpunit/phpunit": "^12.5.11",
     "roave/security-advisories": "dev-latest",
     "vimeo/psalm": "6.13"
   },
